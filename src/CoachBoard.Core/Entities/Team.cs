@@ -4,8 +4,9 @@ namespace CoachBoard.Core.Entities;
 
 public class Team : BaseEntity
 {
-    public Team(string name, string stadium)
+    public Team(long careerId, string name, string stadium)
     {
+        CareerId = careerId;
         Name = name;
         Stadium = stadium;
         Squad = new List<Player>();
@@ -13,6 +14,7 @@ public class Team : BaseEntity
         Transfers = new List<Transfer>();
     }
 
+    public long CareerId { get; private set; }
     public string Name { get; private set; }
     public string Stadium { get; private set; }
     public List<Player> Squad { get; private set; }

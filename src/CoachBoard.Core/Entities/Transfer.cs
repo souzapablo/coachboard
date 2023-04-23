@@ -5,16 +5,19 @@ namespace CoachBoard.Core.Entities;
 
 public class Transfer : BaseEntity
 {
-    public Transfer(Player playerTransferred, TransferStatus status, decimal fee, decimal salary, int contractYears)
+    public Transfer(long teamId, long playerTransferredId, TransferStatus status, decimal fee, decimal salary,
+        int contractYears)
     {
-        PlayerTransferred = playerTransferred;
+        TeamId = teamId;
+        PlayerTransferredId = playerTransferredId;
         Status = status;
         Fee = fee;
         Salary = salary;
         ContractYears = contractYears;
     }
 
-    public Player PlayerTransferred { get; private set; }
+    public long TeamId { get; private set; }
+    public long PlayerTransferredId { get; private set; }
     public TransferStatus Status { get; private set; }
     public decimal Fee { get; private set; }
     public decimal Salary { get; private set; }
