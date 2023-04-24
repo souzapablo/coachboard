@@ -1,5 +1,7 @@
 using System.Text;
+using CoachBoard.Application.Repositories;
 using CoachBoard.Core.Services;
+using CoachBoard.Infrastructure.Persistence.Repositories;
 using CoachBoard.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +17,7 @@ public static class InfrastructureModule
     {
         services
             .AddPersistence(configuration)
+            .AddRepositories()
             .AddAuthentication(configuration);
 
         return services;
@@ -26,6 +29,13 @@ public static class InfrastructureModule
 
         services.AddDbContext<CoachBoardDbContext>(options =>
             options.UseSqlServer(connectionString));
+
+        return services;
+    }
+
+    private static IServiceCollection AddRepositories(this IServiceCollection services)
+    {
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }
