@@ -1,6 +1,9 @@
-using CoachBoard.API.Middlewares;
+using CoachBoard.API.Extensions;
+//using CoachBoard.API.Middlewares;
 using CoachBoard.Application;
+using CoachBoard.Core.Exceptions;
 using CoachBoard.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +14,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var problemDetails = new ValidationProblemDetails(context.ModelState);
+        throw new InputValidationException(problemDetails.Errors);
+    };
+});
+
 var configuration = builder.Configuration;
 
 builder.Services
@@ -18,8 +30,6 @@ builder.Services
     .AddInfrastructure(configuration);
 
 builder.Services.AddLogging();
-
-builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
 
 var app = builder.Build();
 
@@ -30,11 +40,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.HandleExceptions();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
-app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
 app.MapControllers();
 
