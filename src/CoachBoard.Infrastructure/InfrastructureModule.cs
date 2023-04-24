@@ -1,6 +1,11 @@
+using System.Text;
+using CoachBoard.Core.Services;
+using CoachBoard.Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CoachBoard.Infrastructure;
 
@@ -9,7 +14,8 @@ public static class InfrastructureModule
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services
-            .AddPersistence(configuration);
+            .AddPersistence(configuration)
+            .AddAuthentication(configuration);
 
         return services;
     }
@@ -20,6 +26,31 @@ public static class InfrastructureModule
 
         services.AddDbContext<CoachBoardDbContext>(options =>
             options.UseSqlServer(connectionString));
+
+        return services;
+    }
+
+    private static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration configuration)
+    {
+        services
+            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = configuration["Jwt:Issuer"],
+                    ValidAudience = configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey
+                        (Encoding.UTF8.GetBytes(configuration["Jwt:Key"] ?? string.Empty))
+                };
+            });
+
+        services.AddScoped<IAuthService, AuthService>();
 
         return services;
     }
