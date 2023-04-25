@@ -21,10 +21,17 @@ public class UserRepository : IUserRepository
         IQueryable<User> users = _dbContext.Users;
 
         if (!string.IsNullOrWhiteSpace(nickname))
-            users = users.Where(u => u.Nickname == nickname);
+            users = users.Where(user =>
+                user.Nickname.ToLower()
+                    .Contains(nickname.ToLower()));
 
         return users.GetPaged(page, PageSize);
     }
+
+    public async Task<User?> FindByIdAsync(long id) =>
+        await _dbContext.Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(user => user.Id == id);
 
     public async Task CreateAsync(User user)
     {
@@ -32,7 +39,13 @@ public class UserRepository : IUserRepository
         await _dbContext.SaveChangesAsync();
     }
 
+    public async Task UpdateAsync(User user)
+    {
+        _dbContext.Users.Update(user);
+        await _dbContext.SaveChangesAsync();
+    }
+
     public async Task<bool> FindByEmailAsync(string email) =>
         await _dbContext.Users
-            .AnyAsync(user => user.Email == email);
+            .AnyAsync(user => user.Email.Equals(email.ToLower()));
 }

@@ -4,6 +4,10 @@ namespace CoachBoard.Core.Entities;
 
 public class User : BaseEntity
 {
+    public User()
+    {
+    }
+
     public User(string nickname, string email, string password)
     {
         Nickname = nickname;
@@ -12,8 +16,8 @@ public class User : BaseEntity
         Careers = new List<Career>();
     }
 
-    public string Nickname { get; private set; }
-    public string Email { get; private set; }
-    public string Password { get; private set; }
-    public List<Career> Careers { get; private set; }
+    public string Nickname { get; private set; } = string.Empty;
+    public string Email { get; private set; } = string.Empty;
+    public string Password { get; private set; } = string.Empty;
+    public List<Career> Careers { get; private set; } = new();
 }
