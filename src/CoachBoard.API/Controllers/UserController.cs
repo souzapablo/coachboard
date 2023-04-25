@@ -1,7 +1,9 @@
-﻿using CoachBoard.Application.Features.Users.Commands.Create;
+﻿using CoachBoard.Application.Features.Users.Commands.ChangeRole;
+using CoachBoard.Application.Features.Users.Commands.Create;
 using CoachBoard.Application.Features.Users.Commands.Delete;
 using CoachBoard.Application.Features.Users.Queries.FindAll;
 using CoachBoard.Application.Features.Users.Queries.FindById;
+using CoachBoard.Application.InputModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +44,14 @@ public class UserController : ControllerBase
         var id = await _mediator.Send(command);
 
         return CreatedAtAction(nameof(FindById), new { Id = id }, command);
+    }
+
+    [HttpPatch("{id:long}")]
+    public async Task<IActionResult> UpdateRole([FromRoute] long id, [FromBody] ChangeRoleInput input)
+    {
+        var command = new ChangeRoleCommand(id, input.Role);
+        await _mediator.Send(command);
+        return NoContent();
     }
 
     [HttpDelete("{id:long}")]

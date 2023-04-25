@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using CoachBoard.Core.Entities;
+using CoachBoard.Core.Enums;
 
 namespace CoachBoard.UnitTests.Mocks;
 
@@ -12,5 +13,6 @@ public static class UserMock
             .RuleFor(user => user.Nickname, faker => faker.Person.UserName)
             .RuleFor(user => user.Email, faker => faker.Person.Email)
             .RuleFor(user => user.Password, faker => faker.Lorem.Word())
+            .RuleFor(user => user.Role, Role.Standard)
             .Generate();
 }
