@@ -1,4 +1,5 @@
 ﻿using CoachBoard.Application.Features.Users.Commands.Create;
+using CoachBoard.Application.Features.Users.Queries.FindAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,13 @@ public class UserController : ControllerBase
         _mediator = mediator;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> FindAll([FromQuery] FindAllUsersQuery query)
+    {
+        var users = await _mediator.Send(query);
+        return Ok(users);
+    }
+    
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
     {

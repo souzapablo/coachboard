@@ -1,5 +1,4 @@
 using CoachBoard.API.Extensions;
-//using CoachBoard.API.Middlewares;
 using CoachBoard.Application;
 using CoachBoard.Core.Exceptions;
 using CoachBoard.Infrastructure;
