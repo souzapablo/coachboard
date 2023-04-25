@@ -50,4 +50,11 @@ public class UserRepository : IUserRepository
     public async Task<bool> FindByEmailAsync(string email) =>
         await _dbContext.Users
             .AnyAsync(user => user.Email.Equals(email.ToLower()));
+
+    public async Task<User?> FindByNicknameAndPasswordAsync(string nickname, string password) =>
+        await _dbContext.Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(user => user.Nickname.Equals(nickname) &&
+                                         user.Password.Equals(password) &&
+                                         !user.IsDeleted);
 }
