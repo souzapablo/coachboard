@@ -18,7 +18,8 @@ public class UserRepository : IUserRepository
 
     public Task<PaginationResult<User>> FindAllAsync(string? nickname, int page)
     {
-        IQueryable<User> users = _dbContext.Users;
+        var users = _dbContext.Users
+            .Where(user => !user.IsDeleted);
 
         if (!string.IsNullOrWhiteSpace(nickname))
             users = users.Where(user =>
@@ -31,7 +32,8 @@ public class UserRepository : IUserRepository
     public async Task<User?> FindByIdAsync(long id) =>
         await _dbContext.Users
             .AsNoTracking()
-            .FirstOrDefaultAsync(user => user.Id == id);
+            .FirstOrDefaultAsync(user => user.Id == id &&
+                                         !user.IsDeleted);
 
     public async Task CreateAsync(User user)
     {
