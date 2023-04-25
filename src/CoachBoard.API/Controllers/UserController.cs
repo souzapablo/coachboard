@@ -3,12 +3,14 @@ using CoachBoard.Application.Features.Users.Commands.Delete;
 using CoachBoard.Application.Features.Users.Queries.FindAll;
 using CoachBoard.Application.Features.Users.Queries.FindById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoachBoard.API.Controllers;
 
 [ApiController]
 [Route("api/v1/users")]
+[Authorize(Roles = "Admin")]
 public class UserController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -34,6 +36,7 @@ public class UserController : ControllerBase
     }
     
     [HttpPost]
+    [AllowAnonymous]
     public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
     {
         var id = await _mediator.Send(command);
@@ -42,7 +45,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete("{id:long}")]
-    public async Task<IActionResult> FindAll([FromRoute] long id)
+    public async Task<IActionResult> Delete([FromRoute] long id)
     {
         var command = new DeleteUserCommand(id);
         await _mediator.Send(command);

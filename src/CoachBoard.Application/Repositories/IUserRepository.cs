@@ -10,4 +10,5 @@ public interface IUserRepository
     Task CreateAsync(User user);
     Task UpdateAsync(User user);
     Task<bool> FindByEmailAsync(string email);
+    Task<User?> FindByNicknameAndPasswordAsync(string nickname, string password);
 }
