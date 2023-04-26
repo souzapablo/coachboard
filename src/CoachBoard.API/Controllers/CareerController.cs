@@ -1,5 +1,6 @@
 using CoachBoard.Application.Features.Careers.Commands.Create;
 using CoachBoard.Application.Features.Careers.Queries.FindAll;
+using CoachBoard.Application.Features.Careers.Queries.FindById;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,9 @@ public class CareerController : ControllerBase
     [HttpGet("{id:long}")]
     public async Task<IActionResult> FindById([FromRoute] long id)
     {
-        return Ok();
+        var query = new FindCareerByIdQuery(id);
+        var career = await _mediator.Send(query);
+        return Ok(career);
     }
 
 

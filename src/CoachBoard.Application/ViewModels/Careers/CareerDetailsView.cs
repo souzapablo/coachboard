@@ -1,0 +1,15 @@
+using CoachBoard.Core.Entities;
+
+namespace CoachBoard.Application.ViewModels.Careers;
+
+public record CareerDetailsView(
+    long Id,
+    string Manager,
+    IEnumerable<string> Teams)
+{
+    public static CareerDetailsView Map(Career career) =>
+        new CareerDetailsView(
+            career.Id,
+            career.ManagerName,
+            career.Teams.Select(team => team.Name));
+};

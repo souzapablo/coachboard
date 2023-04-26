@@ -4,6 +4,10 @@ namespace CoachBoard.Core.Entities;
 
 public class Career : BaseEntity
 {
+    public Career()
+    {
+    }
+
     public Career(long userId, string managerName)
     {
         UserId = userId;
@@ -12,7 +16,7 @@ public class Career : BaseEntity
     }
 
     public long UserId { get; private set; }
-    public string ManagerName { get; private set; }
+    public string ManagerName { get; private set; } = string.Empty;
     public DateTime LastUpdate { get; private set; } = DateTime.UtcNow;
-    public List<Team> Teams { get; private set; }
+    public List<Team> Teams { get; private set; } = new();
 }
