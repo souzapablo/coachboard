@@ -29,6 +29,15 @@ public class CareerRepository : ICareerRepository
         return careers.GetPaged(page, PageSize);
     }
 
+    public Task<PaginationResult<Career>> FindByUserIdAsync(long userId, int page)
+    {
+        var careers = _dbContext.Careers
+            .Where(career => !career.IsDeleted &&
+                             career.UserId == userId);
+
+        return careers.GetPaged(page, PageSize);
+    }
+
     public async Task<Career?> FindByIdAsync(long id) =>
         await _dbContext.Careers
             .Where(career => !career.IsDeleted)
@@ -36,15 +45,13 @@ public class CareerRepository : ICareerRepository
             .AsNoTracking()
             .SingleOrDefaultAsync(career => career.Id == id);
 
-    public async Task CreateAsync(Career career)
-    {
+    public async Task CreateAsync(Career career) =>
         await _dbContext.Careers.AddAsync(career);
-        await _dbContext.SaveChangesAsync();
-    }
+
 
     public async Task UpdateAsync(Career career)
     {
-         _dbContext.Careers.Update(career);
+        _dbContext.Careers.Update(career);
         await _dbContext.SaveChangesAsync();
     }
 }

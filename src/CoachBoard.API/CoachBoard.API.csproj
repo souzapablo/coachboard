@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CoachBoard.Application\CoachBoard.Application.csproj" />
     <ProjectReference Include="..\CoachBoard.Infrastructure\CoachBoard.Infrastructure.csproj" />
   </ItemGroup>
 

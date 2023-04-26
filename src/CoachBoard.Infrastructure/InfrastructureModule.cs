@@ -1,6 +1,7 @@
 using System.Text;
 using CoachBoard.Application.Repositories;
 using CoachBoard.Core.Services;
+using CoachBoard.Infrastructure.Persistence;
 using CoachBoard.Infrastructure.Persistence.Repositories;
 using CoachBoard.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -18,6 +19,7 @@ public static class InfrastructureModule
         services
             .AddPersistence(configuration)
             .AddRepositories()
+            .AddUnitOfWork()
             .AddAuthentication(configuration);
 
         return services;
@@ -37,6 +39,8 @@ public static class InfrastructureModule
     {
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ICareerRepository, CareerRepository>();
+        services.AddScoped<ITeamRepository, TeamRepository>();
+        services.AddScoped<IPlayerRepository, PlayerRepository>();
 
         return services;
     }
@@ -62,6 +66,13 @@ public static class InfrastructureModule
             });
 
         services.AddScoped<IAuthService, AuthService>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddUnitOfWork(this IServiceCollection services)
+    {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }

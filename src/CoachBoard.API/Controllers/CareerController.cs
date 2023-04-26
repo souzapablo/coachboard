@@ -2,6 +2,7 @@ using CoachBoard.Application.Features.Careers.Commands.Create;
 using CoachBoard.Application.Features.Careers.Commands.Delete;
 using CoachBoard.Application.Features.Careers.Queries.FindAll;
 using CoachBoard.Application.Features.Careers.Queries.FindById;
+using CoachBoard.Application.Features.Careers.Queries.FindByUserId;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,14 @@ public class CareerController : ControllerBase
     public async Task<IActionResult> FindById([FromRoute] long id)
     {
         var query = new FindCareerByIdQuery(id);
+        var career = await _mediator.Send(query);
+        return Ok(career);
+    }
+    
+    [HttpGet("user/{userId:long}")]
+    public async Task<IActionResult> FindByUserId([FromRoute] long userId, [FromQuery] int page = 1)
+    {
+        var query = new FindCareersByUserIdQuery(userId, page);
         var career = await _mediator.Send(query);
         return Ok(career);
     }

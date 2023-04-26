@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoachBoard.Core\CoachBoard.Core.csproj" />
+    <ProjectReference Include="..\CoachBoard.Infrastructure\CoachBoard.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

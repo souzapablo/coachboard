@@ -1,0 +1,377 @@
+{
+  "Name": "Brighton & Hove Albion",
+  "Stadium": "The Amex Stadium",
+  "InitialPlayers": [
+    {
+      "Name": "Robert Sánchez",
+      "BirthDate": "1997-09-18",
+      "JoinedDate": "2015-06-09",
+      "Overall": 79,
+      "KitNumber": 1,
+      "Position": 0,
+      "Status": 0
+    },
+    {
+      "Name": "Joël Veltman",
+      "BirthDate": "1992-01-15",
+      "JoinedDate": "2020-07-29",
+      "Overall": 78,
+      "KitNumber": 34,
+      "Position": 2,
+      "Status": 0
+    },
+    {
+      "Name": "Adam Webster",
+      "BirthDate": "1995-01-04",
+      "JoinedDate": "2019-08-03",
+      "Overall": 77,
+      "KitNumber": 4,
+      "Position": 2,
+      "Status": 0
+    },
+    {
+      "Name": "Lewis Dunk",
+      "BirthDate": "1991-11-21",
+      "JoinedDate": "2010-04-30",
+      "Overall": 80,
+      "KitNumber": 5,
+      "Position": 2,
+      "Status": 0
+    },
+    {
+      "Name": "Pervis Estupiñán",
+      "BirthDate": "1998-01-21",
+      "JoinedDate": "2022-08-16",
+      "Overall": 79,
+      "KitNumber": 30,
+      "Position": 1,
+      "Status": 0
+    },
+    {
+      "Name": "Pascal Groß",
+      "BirthDate": "1991-07-15",
+      "JoinedDate": "2017-07-01",
+      "Overall": 78,
+      "KitNumber": 13,
+      "Position": 8,
+      "Status": 0    
+    },
+    {
+      "Name": "Moisés Caicedo",
+      "BirthDate": "2001-11-02",
+      "JoinedDate": "2021-02-01",
+      "Overall": 77,
+      "KitNumber": 25,
+      "Position": 5,
+      "Status": 0
+    },
+    {
+      "Name": "Solomon March",
+      "BirthDate": "1994-07-20",
+      "JoinedDate": "2013-07-01",
+      "Overall": 79,
+      "KitNumber": 7,
+      "Position": 9,
+      "Status": 0
+    },
+    {
+      "Name": "Kaoru Mitoma",
+      "BirthDate": "1997-05-20",
+      "JoinedDate": "2021-08-10",
+      "Overall": 78,
+      "KitNumber": 22,
+      "Position": 7,
+      "Status": 0
+    },
+    {
+      "Name": "Alexis Mac Allister",
+      "BirthDate": "1998-12-24",
+      "JoinedDate": "2019-07-01",
+      "Overall": 80,
+      "KitNumber": 10,
+      "Position": 8,
+      "Status": 0
+    },
+    {
+      "Name": "Daniel Welbeck",
+      "BirthDate": "1990-11-26",
+      "JoinedDate": "2020-10-18",
+      "Overall": 75,
+      "KitNumber": 18,
+      "Position": 14,
+      "Status": 0
+    },
+    {
+      "Name": "Denis Undav",
+      "BirthDate": "1996-07-19",
+      "JoinedDate": "2021-01-31",
+      "Overall": 75,
+      "KitNumber": 21,
+      "Position": 14,
+      "Status": 0
+    },
+    {
+      "Name": "Evan Ferguson",
+      "BirthDate": "2004-10-19",
+      "JoinedDate": "2021-01-09",
+      "Overall": 68,
+      "KitNumber": 28,
+      "Position": 14,
+      "Status": 0
+    },
+    {
+      "Name": "Billy Gilmour",
+      "BirthDate": "2001-06-11",
+      "JoinedDate": "2022-09-01",
+      "Overall": 72,
+      "KitNumber": 27,
+      "Position": 8,
+      "Status": 0
+    },
+    {
+      "Name": "Tariq Lamptey",
+      "BirthDate": "2000-09-30",
+      "JoinedDate": "2020-01-31",
+      "Overall": 75,
+      "KitNumber": 2,
+      "Position": 3,
+      "Status": 0
+    },
+    {
+      "Name": "Jan Paul van Hecke",
+      "BirthDate": "2000-06-08",
+      "JoinedDate": "2020-09-10",
+      "Overall": 71,
+      "KitNumber": 29,
+      "Position": 2,
+      "Status": 0
+    },
+    {
+      "Name": "Levi Cowell",
+      "BirthDate": "2003-02-26",
+      "JoinedDate": "2023-06-30",
+      "Overall": 71,
+      "KitNumber": 29,
+      "Position": 2,
+      "Status": 1
+    },
+    {
+      "Name": "Jason Steele",
+      "BirthDate": "1990-08-18",
+      "JoinedDate": "2018-06-21",
+      "Overall": 68,
+      "KitNumber": 23,
+      "Position": 0,
+      "Status": 0
+    },
+    {
+      "Name": "Jakub Moder",
+      "BirthDate": "1999-04-07",
+      "JoinedDate": "2020-10-05",
+      "Overall": 74,
+      "KitNumber": 15,
+      "Position": 8,
+      "Status": 0
+    },
+    {
+      "Name": "Adama Lallana",
+      "BirthDate": "1988-05-10",
+      "JoinedDate": "2020-07-02",
+      "Overall": 76,
+      "KitNumber": 14,
+      "Position": 10,
+      "Status": 0
+    },
+    {
+      "Name": "Jeremy Sarmiento",
+      "BirthDate": "2002-06-16",
+      "JoinedDate": "2021-07-02",
+      "Overall": 67,
+      "KitNumber": 19,
+      "Position": 9,
+      "Status": 0
+    },
+    {
+      "Name": "Julio Enciso",
+      "BirthDate": "2004-01-23",
+      "JoinedDate": "2022-07-01",
+      "Overall": 64,
+      "KitNumber": 20,
+      "Position": 7,
+      "Status": 0
+    },
+    {
+      "Name": "Odeluga Offiah",
+      "BirthDate": "2002-10-26",
+      "JoinedDate": "2021-07-01",
+      "Overall": 60,
+      "KitNumber": 42,
+      "Position": 2,
+      "Status": 0
+    },
+    {
+      "Name": "Cameron Peupion",
+      "BirthDate": "2002-09-23",
+      "JoinedDate": "2021-07-01",
+      "Overall": 57,
+      "KitNumber": 51,
+      "Position": 10,
+      "Status": 0
+    },
+    {
+      "Name": "Facundo Buonanotte",
+      "BirthDate": "2004-12-23",
+      "JoinedDate": "2023-01-01",
+      "Overall": 68,
+      "KitNumber": 40,
+      "Position": 10,
+      "Status": 0
+    },
+    {
+      "Name": "Yasin Ayari",
+      "BirthDate": "2003-10-06",
+      "JoinedDate": "2023-01-30",
+      "Overall": 61,
+      "KitNumber": 26,
+      "Position": 8,
+      "Status": 0
+    },
+    {
+      "Name": "Thomas McGill",
+      "BirthDate": "2000-03-25",
+      "JoinedDate": "2018-05-14",
+      "Overall": 58,
+      "KitNumber": 38,
+      "Position": 0,
+      "Status": 0
+    },
+    {
+      "Name": "Jamie Mullins",
+      "BirthDate": "2004-09-29",
+      "JoinedDate": "2020-01-04",
+      "Overall": 58,
+      "KitNumber": 62,
+      "Position": 10,
+      "Status": 0
+    },
+    {
+      "Name": "James Beadle",
+      "BirthDate": "2004-07-16",
+      "Overall": 59,
+      "Position": 0,
+      "Status": 2
+    },
+    {
+      "Name": "Marc Leonard",
+      "BirthDate": "2001-12-19",
+      "Overall": 63,
+      "Position": 8,
+      "Status": 2
+    },
+    {
+      "Name": "Ed Turns",
+      "BirthDate": "2002-10-18",
+      "Overall": 61,
+      "Position": 2,
+      "Status": 2
+    },
+    {
+      "Name": "Karl Rushworth",
+      "BirthDate": "2001-07-02",
+      "Overall": 66,
+      "Position": 0,
+      "Status": 2
+    },
+    {
+      "Name": "Simon Adingra",
+      "BirthDate": "2002-01-01",
+      "Overall": 72,
+      "Position": 7,
+      "Status": 2
+    },
+    {
+      "Name": "Reda Khadra",
+      "BirthDate": "2001-07-04",
+      "Overall": 69,
+      "Position": 7,
+      "Status": 2
+    },
+    {
+      "Name": "Abdallah Sima",
+      "BirthDate": "2001-06-17",
+      "Overall": 72,
+      "Position": 14,
+      "Status": 2
+    },
+    {
+      "Name": "Haydon Roberts",
+      "BirthDate": "2002-05-10",
+      "Overall": 65,
+      "Position": 1,
+      "Status": 2
+    },
+    {
+      "Name": "Kacper Kozłowski",
+      "BirthDate": "2003-10-16",
+      "Overall": 68,
+      "Position": 8,
+      "Status": 2
+    },
+    {
+      "Name": "James Furlong",
+      "BirthDate": "2002-07-07",
+      "Overall": 59,
+      "Position": 4,
+      "Status": 2
+    },
+    {
+      "Name": "Michał Karbownik",
+      "BirthDate": "2001-03-13",
+      "Overall": 71,
+      "Position": 1,
+      "Status": 2
+    },
+    {
+      "Name": "Jensen Weir",
+      "BirthDate": "2002-01-31",
+      "Overall": 65,
+      "Position": 8,
+      "Status": 2
+    },
+    {
+      "Name": "Kjell Scherpen",
+      "BirthDate": "2000-01-23",
+      "Overall": 67,
+      "Position": 0,
+      "Status": 2
+    },
+    {
+      "Name": "Taylor Richards",
+      "BirthDate": "2000-12-04",
+      "Overall": 66,
+      "Position": 10,
+      "Status": 2
+    },
+    {
+      "Name": "Aaron Connolly",
+      "BirthDate": "2000-01-28",
+      "Overall": 69,
+      "Position": 14,
+      "Status": 2
+    },
+    {
+      "Name": "Steven Alzate",
+      "BirthDate": "1998-09-08",
+      "Overall": 71,
+      "Position": 8,
+      "Status": 2
+    },
+    {
+      "Name": "Andi Zeqiri",
+      "BirthDate": "1999-06-22",
+      "Overall": 68,
+      "Position": 14,
+      "Status": 2
+    }
+  ]
+}
