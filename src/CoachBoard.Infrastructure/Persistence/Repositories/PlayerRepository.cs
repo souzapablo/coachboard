@@ -1,5 +1,5 @@
-using CoachBoard.Application.Repositories;
 using CoachBoard.Core.Entities;
+using CoachBoard.Core.Repositories;
 
 namespace CoachBoard.Infrastructure.Persistence.Repositories;
 

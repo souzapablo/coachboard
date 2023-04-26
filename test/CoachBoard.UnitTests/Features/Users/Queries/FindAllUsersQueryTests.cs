@@ -2,10 +2,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using CoachBoard.Application.Features.Users.Queries.FindAll;
-using CoachBoard.Application.Repositories;
 using CoachBoard.Application.ViewModels.Users;
 using CoachBoard.Core.Entities;
 using CoachBoard.Core.Models;
+using CoachBoard.Core.Repositories;
 using FluentAssertions;
 using Moq;
 using Xunit;

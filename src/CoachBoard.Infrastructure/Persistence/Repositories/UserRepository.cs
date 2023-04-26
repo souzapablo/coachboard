@@ -1,6 +1,6 @@
-﻿using CoachBoard.Application.Repositories;
-using CoachBoard.Core.Entities;
+﻿using CoachBoard.Core.Entities;
 using CoachBoard.Core.Models;
+using CoachBoard.Core.Repositories;
 using CoachBoard.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,6 +1,6 @@
 using CoachBoard.Core.Entities;
 
-namespace CoachBoard.Application.Repositories;
+namespace CoachBoard.Core.Repositories;
 
 public interface IPlayerRepository
 {

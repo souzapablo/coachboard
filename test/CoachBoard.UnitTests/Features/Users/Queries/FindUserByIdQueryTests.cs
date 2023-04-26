@@ -2,10 +2,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using CoachBoard.Application.Features.Users.Queries.FindById;
-using CoachBoard.Application.Repositories;
 using CoachBoard.Application.ViewModels.Users;
 using CoachBoard.Core.Entities;
 using CoachBoard.Core.Exceptions;
+using CoachBoard.Core.Repositories;
 using CoachBoard.UnitTests.Mocks;
 using FluentAssertions;
 using Moq;

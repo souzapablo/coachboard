@@ -1,4 +1,4 @@
-using CoachBoard.Application.Repositories;
+using CoachBoard.Core.Repositories;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace CoachBoard.Infrastructure.Persistence;

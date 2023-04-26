@@ -1,7 +1,7 @@
 using CoachBoard.Core.Entities;
 using CoachBoard.Core.Models;
 
-namespace CoachBoard.Application.Repositories;
+namespace CoachBoard.Core.Repositories;
 
 public interface ICareerRepository
 {

@@ -1,6 +1,6 @@
-using CoachBoard.Application.Repositories;
 using CoachBoard.Application.ViewModels.Users;
 using CoachBoard.Core.Models;
+using CoachBoard.Core.Repositories;
 using MediatR;
 
 namespace CoachBoard.Application.Features.Users.Queries.FindAll;

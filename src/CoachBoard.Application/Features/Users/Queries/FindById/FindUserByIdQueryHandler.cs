@@ -1,7 +1,7 @@
-﻿using CoachBoard.Application.Repositories;
-using CoachBoard.Application.ViewModels.Users;
+﻿using CoachBoard.Application.ViewModels.Users;
 using CoachBoard.Core.Entities;
 using CoachBoard.Core.Exceptions;
+using CoachBoard.Core.Repositories;
 using MediatR;
 
 namespace CoachBoard.Application.Features.Users.Queries.FindById;

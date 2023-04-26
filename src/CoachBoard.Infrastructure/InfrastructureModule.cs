@@ -1,5 +1,5 @@
 using System.Text;
-using CoachBoard.Application.Repositories;
+using CoachBoard.Core.Repositories;
 using CoachBoard.Core.Services;
 using CoachBoard.Infrastructure.Persistence;
 using CoachBoard.Infrastructure.Persistence.Repositories;

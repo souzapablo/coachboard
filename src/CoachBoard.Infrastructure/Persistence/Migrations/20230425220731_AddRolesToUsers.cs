@@ -2,28 +2,27 @@
 
 #nullable disable
 
-namespace CoachBoard.Infrastructure.Persistence.Migrations
+namespace CoachBoard.Infrastructure.Persistence.Migrations;
+
+/// <inheritdoc />
+public partial class AddRolesToUsers : Migration
 {
     /// <inheritdoc />
-    public partial class AddRolesToUsers : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AddColumn<int>(
-                name: "Role",
-                table: "Users",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-        }
+        migrationBuilder.AddColumn<int>(
+            name: "Role",
+            table: "Users",
+            type: "int",
+            nullable: false,
+            defaultValue: 0);
+    }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "Role",
-                table: "Users");
-        }
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropColumn(
+            name: "Role",
+            table: "Users");
     }
 }

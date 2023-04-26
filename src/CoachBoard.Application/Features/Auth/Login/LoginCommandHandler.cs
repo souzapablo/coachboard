@@ -1,7 +1,7 @@
-using CoachBoard.Application.Repositories;
 using CoachBoard.Application.ViewModels.Auth;
 using CoachBoard.Core.Exceptions;
 using CoachBoard.Core.Extensions;
+using CoachBoard.Core.Repositories;
 using CoachBoard.Core.Services;
 using MediatR;
 
