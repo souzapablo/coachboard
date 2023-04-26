@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using CoachBoard.Application.Features.Careers.Queries.FindAll;
 using CoachBoard.Application.Repositories;
 using CoachBoard.Application.ViewModels.Careers;
-using CoachBoard.Application.ViewModels.Users;
 using CoachBoard.Core.Entities;
 using CoachBoard.Core.Models;
 using FluentAssertions;

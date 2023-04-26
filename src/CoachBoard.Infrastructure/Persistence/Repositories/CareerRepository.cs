@@ -27,4 +27,10 @@ public class CareerRepository : ICareerRepository
         
         return careers.GetPaged(page, PageSize);
     }
+
+    public async Task CreateAsync(Career career)
+    {
+        await _dbContext.Careers.AddAsync(career);
+        await _dbContext.SaveChangesAsync();
+    }
 }

@@ -32,6 +32,7 @@ public class UserRepository : IUserRepository
     public async Task<User?> FindByIdAsync(long id) =>
         await _dbContext.Users
             .AsNoTracking()
+            .Include(user => user.Careers)
             .FirstOrDefaultAsync(user => user.Id == id &&
                                          !user.IsDeleted);
 
