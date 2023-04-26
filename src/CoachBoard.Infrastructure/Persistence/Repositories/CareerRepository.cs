@@ -41,4 +41,10 @@ public class CareerRepository : ICareerRepository
         await _dbContext.Careers.AddAsync(career);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task UpdateAsync(Career career)
+    {
+         _dbContext.Careers.Update(career);
+        await _dbContext.SaveChangesAsync();
+    }
 }

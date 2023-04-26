@@ -1,4 +1,5 @@
 using CoachBoard.Application.Features.Careers.Commands.Create;
+using CoachBoard.Application.Features.Careers.Commands.Delete;
 using CoachBoard.Application.Features.Careers.Queries.FindAll;
 using CoachBoard.Application.Features.Careers.Queries.FindById;
 using MediatR;
@@ -26,7 +27,7 @@ public class CareerController : ControllerBase
 
         return Ok(careers);
     }
-    
+
     [HttpGet("{id:long}")]
     public async Task<IActionResult> FindById([FromRoute] long id)
     {
@@ -35,11 +36,18 @@ public class CareerController : ControllerBase
         return Ok(career);
     }
 
-
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateCareerCommand command)
     {
         var id = await _mediator.Send(command);
-        return CreatedAtAction(nameof(FindById), new { Id = id}, command);
+        return CreatedAtAction(nameof(FindById), new { Id = id }, command);
+    }
+
+    [HttpDelete("{id:long}")]
+    public async Task<IActionResult> Delete([FromRoute] long id)
+    {
+        var command = new DeleteCareerCommand(id);
+        await _mediator.Send(command);
+        return NoContent();
     }
 }
