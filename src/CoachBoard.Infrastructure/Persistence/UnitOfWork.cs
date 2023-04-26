@@ -5,7 +5,7 @@ namespace CoachBoard.Infrastructure.Persistence;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private IDbContextTransaction _transaction;
+    private IDbContextTransaction _transaction = null!;
     private readonly CoachBoardDbContext _dbContext;
 
     public UnitOfWork(
