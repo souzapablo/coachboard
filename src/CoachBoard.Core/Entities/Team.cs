@@ -4,6 +4,10 @@ namespace CoachBoard.Core.Entities;
 
 public class Team : BaseEntity
 {
+    public Team()
+    {
+    }
+
     public Team(long careerId, string name, string stadium)
     {
         CareerId = careerId;
