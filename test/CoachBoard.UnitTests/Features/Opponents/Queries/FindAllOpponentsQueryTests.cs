@@ -17,7 +17,7 @@ public class FindAllOpponentsQueryTests
     private readonly Mock<IOpponentRepository> _opponentRepositoryMcMock = new();
 
     [Fact(DisplayName = "Should return a page of OpponentView")]
-    public async Task ShouldThrowExceptionIfOpponentIsNotFound()
+    public async Task  ShouldReturnAPageOfOpponentView()
     {
         // Arrange
         var paginatedOpponents = new PaginationResult<Opponent>()

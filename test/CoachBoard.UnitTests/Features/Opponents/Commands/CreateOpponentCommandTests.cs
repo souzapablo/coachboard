@@ -18,7 +18,7 @@ public class CreateOpponentCommandTests
     private readonly Mock<ICareerRepository> _careerRepositoryMock = new();
     
     [Fact(DisplayName = "Should throw exception when career is not found")]
-    public async Task ShouldThrowExceptionWhenUserIsNotFound()
+    public async Task ShouldThrowExceptionWhenCareerIsNotFound()
     {
         // Arrange
         var command = new CreateOpponentCommand(1L, "Test Career", "Test Stadium");

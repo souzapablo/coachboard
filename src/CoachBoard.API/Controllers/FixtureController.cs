@@ -3,12 +3,14 @@ using CoachBoard.Application.Features.Fixtures.Commands.CreateGoal;
 using CoachBoard.Application.InputModels.Fixtures;
 using CoachBoard.Application.InputModels.Goals;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoachBoard.API.Controllers;
 
 [ApiController]
 [Route("api/v1/fixtures")]
+[Authorize]
 public class FixtureController : ControllerBase
 {
     private readonly IMediator _mediator;

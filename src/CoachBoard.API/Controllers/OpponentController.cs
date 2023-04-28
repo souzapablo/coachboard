@@ -4,12 +4,14 @@ using CoachBoard.Application.Features.Opponents.Queries.FindAll;
 using CoachBoard.Application.Features.Opponents.Queries.FindById;
 using CoachBoard.Application.InputModels.Opponents;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoachBoard.API.Controllers;
 
 [ApiController]
 [Route("api/v1/opponents")]
+[Authorize]
 public class OpponentController : ControllerBase
 {
     private readonly IMediator _mediator;

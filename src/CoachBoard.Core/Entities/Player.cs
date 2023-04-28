@@ -1,14 +1,16 @@
 using CoachBoard.Core.Entities.Base;
 using CoachBoard.Core.Enums;
+using Newtonsoft.Json;
 
 namespace CoachBoard.Core.Entities;
 
 public class Player : BaseEntity
 {
-    private Player()
+    public Player()
     {
     }
 
+    [JsonConstructor]
     public Player(long teamId, string name, DateTime birthDate, DateTime? joinedDate, int overall, int? kitNumber,
         PlayerPosition position, PlayerStatus status)
     {
@@ -38,6 +40,9 @@ public class Player : BaseEntity
     public List<Goal> Goals { get; private set; } = new();
     public List<Assist> Assists { get; private set; } = new();
     public PlayerStatus Status { get; private set; }
+
+    public int Age =>
+        DateTime.Now.Year - BirthDate.Year;
 
     public void AddFixture(Fixture fixture) =>
         Fixtures.Add(fixture);
