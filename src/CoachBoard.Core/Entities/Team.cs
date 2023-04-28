@@ -19,9 +19,9 @@ public class Team : BaseEntity
     }
 
     public long CareerId { get; private set; }
-    public string Name { get; private set; }
-    public string Stadium { get; private set; }
-    public List<Player> Squad { get; private set; }
-    public List<Fixture> Fixtures { get; private set; }
-    public List<Transfer> Transfers { get; private set; }
+    public string Name { get; private set; } = string.Empty;
+    public string Stadium { get; private set; } = string.Empty;
+    public List<Player> Squad { get; private set; } = new();
+    public List<Fixture> Fixtures { get; private set; } = new();
+    public List<Transfer> Transfers { get; private set; } = new();
 }

@@ -4,5 +4,6 @@ namespace CoachBoard.Core.Repositories;
 
 public interface IFixtureRepository
 {
-    Task Create(Fixture fixture);
+    Task<Fixture?> FindByIdAsync(long id);
+    Task CreateAsync(Fixture fixture);
 }

@@ -42,6 +42,9 @@ public static class InfrastructureModule
         services.AddScoped<ITeamRepository, TeamRepository>();
         services.AddScoped<IPlayerRepository, PlayerRepository>();
         services.AddScoped<IFixtureRepository, FixtureRepository>();
+        services.AddScoped<IAssistRepository, AssistRepository>();
+        services.AddScoped<IGoalRepository, GoalRepository>();
+        services.AddScoped<IOpponentRepository, OpponentRepository>();
 
         return services;
     }

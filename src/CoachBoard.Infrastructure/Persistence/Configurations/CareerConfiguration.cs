@@ -13,5 +13,10 @@ public class CareerConfiguration : IEntityTypeConfiguration<Career>
         builder.HasMany(career => career.Teams)
             .WithOne()
             .HasForeignKey(team => team.CareerId);
+
+        builder.HasMany(career => career.Opponents)
+            .WithOne()
+            .HasForeignKey(opponent => opponent.CareerId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

@@ -13,6 +13,12 @@ public class PlayerRepository : IPlayerRepository
         _dbContext = dbContext;
     }
 
+    public async Task<Player?> FindByIdAsync(long id) =>
+        await _dbContext.Players
+            .AsNoTracking()
+            .SingleOrDefaultAsync(player => !player.IsDeleted &&
+                                            player.Id == id);
+
     public async Task<List<Player>> FindSquadAsync(List<long> playersIds) =>
         await _dbContext.Players
             .AsNoTracking()
@@ -20,11 +26,8 @@ public class PlayerRepository : IPlayerRepository
                              playersIds.Contains(player.Id))
             .ToListAsync();
 
-    public async Task UpdateSquadAsync(List<Player> players)
-    {
+    public void UpdateSquadAsync(List<Player> players) =>
         _dbContext.Players.UpdateRange(players);
-        await _dbContext.SaveChangesAsync();
-    }
 
 
     public async Task CreateAsync(IEnumerable<Player> initialTeamInitialPlayers) =>

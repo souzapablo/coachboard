@@ -10,7 +10,7 @@ public record TeamDetailsView(
     List<string> Squad)
 {
     public static TeamDetailsView Map(Team team) =>
-        new TeamDetailsView(
+        new(
             team.Id,
             team.CareerId,
             team.Name,

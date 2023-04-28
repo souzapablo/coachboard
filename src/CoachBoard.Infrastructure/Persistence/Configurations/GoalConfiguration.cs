@@ -10,6 +10,11 @@ public class GoalConfiguration : IEntityTypeConfiguration<Goal>
     {
         builder.HasKey(goal => goal.Id);
 
+        builder.HasOne(goal => goal.PlayerScored)
+            .WithMany(player => player.Goals)
+            .HasForeignKey(goal => goal.PlayerScoredId)
+            .OnDelete(DeleteBehavior.NoAction);
+
         builder.HasOne(goal => goal.Assist)
             .WithOne()
             .HasForeignKey<Assist>(assist => assist.GoalId);

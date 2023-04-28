@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using CoachBoard.Application.Features.Fixtures.Commands;
+using CoachBoard.Application.Features.Fixtures.Commands.Create;
 using CoachBoard.Core.Entities;
 using CoachBoard.Core.Enums;
 using CoachBoard.Core.Exceptions;
@@ -118,7 +118,7 @@ public class CreateFixtureCommandTests
         var sut = await commandHandler.Handle(command, new CancellationToken());
 
         // Assert
-        _fixtureRepositoryMock.Verify(x => x.Create(It.IsAny<Fixture>()), Times.Once());
+        _fixtureRepositoryMock.Verify(x => x.CreateAsync(It.IsAny<Fixture>()), Times.Once());
         _playerRepositoryMock.Verify(x => x.UpdateSquadAsync(It.IsAny<List<Player>>()), Times.Once);
         sut.Should().BeOfType(typeof(long));
         players.ForEach(player =>

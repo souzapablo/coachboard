@@ -57,7 +57,7 @@ public class CreateUserCommandTests
     }
 
     private CreateUserCommandHandler GenerateCommandHandler =>
-        new CreateUserCommandHandler(
+        new(
             _userRepositoryMock.Object,
             _authServiceMock.Object);
 }

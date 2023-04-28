@@ -3,7 +3,7 @@ using CoachBoard.Core.Exceptions;
 using CoachBoard.Infrastructure.Persistence;
 using MediatR;
 
-namespace CoachBoard.Application.Features.Fixtures.Commands;
+namespace CoachBoard.Application.Features.Fixtures.Commands.Create;
 
 public class CreateFixtureCommandHandler : IRequestHandler<CreateFixtureCommand, long>
 {
@@ -34,7 +34,7 @@ public class CreateFixtureCommandHandler : IRequestHandler<CreateFixtureCommand,
 
         await _unitOfWork.BeginTransactionAsync();
 
-        await _unitOfWork.Fixtures.Create(fixture);
+        await _unitOfWork.Fixtures.CreateAsync(fixture);
 
         await _unitOfWork.CompleteAsync();
 
@@ -43,7 +43,7 @@ public class CreateFixtureCommandHandler : IRequestHandler<CreateFixtureCommand,
         players.ForEach(player =>
             player.AddFixture(fixture));
 
-        await _unitOfWork.Players.UpdateSquadAsync(players);
+        _unitOfWork.Players.UpdateSquadAsync(players);
 
         await _unitOfWork.CompleteAsync();
 

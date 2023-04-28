@@ -12,7 +12,7 @@ public record UserDetailsView(
 )
 {
     public static UserDetailsView Map(User user) =>
-        new UserDetailsView(
+        new(
             user.Id,
             user.Nickname,
             user.Email,

@@ -10,6 +10,8 @@ public interface IUnitOfWork
     IPlayerRepository Players { get; }
     IFixtureRepository Fixtures { get; }
     IOpponentRepository Opponents { get; }
+    IGoalRepository Goals { get; }
+    IAssistRepository Assists { get; }
     Task<int> CompleteAsync();
     Task BeginTransactionAsync();
     Task CommitAsync();

@@ -8,479 +8,511 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CoachBoard.Infrastructure.Persistence.Migrations;
-
-[DbContext(typeof(CoachBoardDbContext))]
-partial class CoachBoardDbContextModelSnapshot : ModelSnapshot
+namespace CoachBoard.Infrastructure.Persistence.Migrations
 {
-    protected override void BuildModel(ModelBuilder modelBuilder)
+    [DbContext(typeof(CoachBoardDbContext))]
+    partial class CoachBoardDbContextModelSnapshot : ModelSnapshot
     {
+        protected override void BuildModel(ModelBuilder modelBuilder)
+        {
 #pragma warning disable 612, 618
-        modelBuilder
-            .HasAnnotation("ProductVersion", "7.0.5")
-            .HasAnnotation("Relational:MaxIdentifierLength", 128);
+            modelBuilder
+                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-        SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Assist", b =>
-            {
-                b.Property<long>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bigint");
+            modelBuilder.Entity("CoachBoard.Core.Entities.Assist", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<long>("GoalId")
-                    .HasColumnType("bigint");
+                    b.Property<long>("GoalId")
+                        .HasColumnType("bigint");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<long>("PlayerAssistedId")
-                    .HasColumnType("bigint");
+                    b.Property<long>("PlayerAssistedId")
+                        .HasColumnType("bigint");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("GoalId")
-                    .IsUnique();
+                    b.HasIndex("GoalId")
+                        .IsUnique();
 
-                b.HasIndex("PlayerAssistedId");
+                    b.HasIndex("PlayerAssistedId");
 
-                b.ToTable("Assists");
-            });
+                    b.ToTable("Assists");
+                });
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Career", b =>
-            {
-                b.Property<long>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bigint");
+            modelBuilder.Entity("CoachBoard.Core.Entities.Career", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<DateTime>("LastUpdate")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("ManagerName")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ManagerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<long>("UserId")
-                    .HasColumnType("bigint");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("UserId");
+                    b.HasIndex("UserId");
 
-                b.ToTable("Careers");
-            });
+                    b.ToTable("Careers");
+                });
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Fixture", b =>
-            {
-                b.Property<long>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bigint");
+            modelBuilder.Entity("CoachBoard.Core.Entities.Fixture", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                b.Property<int>("Competition")
-                    .HasColumnType("int");
+                    b.Property<int>("Competition")
+                        .HasColumnType("int");
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<int>("Location")
-                    .HasColumnType("int");
+                    b.Property<int>("Location")
+                        .HasColumnType("int");
 
-                b.Property<int>("OpponentGoals")
-                    .HasColumnType("int");
+                    b.Property<int>("OpponentGoals")
+                        .HasColumnType("int");
 
-                b.Property<long>("OpponentId")
-                    .HasColumnType("bigint");
+                    b.Property<long>("OpponentId")
+                        .HasColumnType("bigint");
 
-                b.Property<long>("TeamId")
-                    .HasColumnType("bigint");
+                    b.Property<long>("TeamId")
+                        .HasColumnType("bigint");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("OpponentId");
+                    b.HasIndex("OpponentId");
 
-                b.HasIndex("TeamId");
+                    b.HasIndex("TeamId");
 
-                b.ToTable("Fixtures");
-            });
+                    b.ToTable("Fixtures");
+                });
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Goal", b =>
-            {
-                b.Property<long>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bigint");
+            modelBuilder.Entity("CoachBoard.Core.Entities.Goal", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<long>("FixtureId")
-                    .HasColumnType("bigint");
+                    b.Property<long>("FixtureId")
+                        .HasColumnType("bigint");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<bool>("IsOwnGoal")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsOwnGoal")
+                        .HasColumnType("bit");
 
-                b.HasKey("Id");
+                    b.Property<long>("PlayerScoredId")
+                        .HasColumnType("bigint");
 
-                b.HasIndex("FixtureId");
+                    b.HasKey("Id");
 
-                b.ToTable("Goals");
-            });
+                    b.HasIndex("FixtureId");
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Opponent", b =>
-            {
-                b.Property<long>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bigint");
+                    b.HasIndex("PlayerScoredId");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.ToTable("Goals");
+                });
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+            modelBuilder.Entity("CoachBoard.Core.Entities.Opponent", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                b.Property<string>("Name")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<long>("CareerId")
+                        .HasColumnType("bigint");
 
-                b.Property<string>("Stadium")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.HasKey("Id");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.ToTable("Opponents");
-            });
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Player", b =>
-            {
-                b.Property<long>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bigint");
+                    b.Property<string>("Stadium")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.HasKey("Id");
 
-                b.Property<DateTime>("BirthDate")
-                    .HasColumnType("datetime2");
+                    b.HasIndex("CareerId");
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.ToTable("Opponents");
+                });
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+            modelBuilder.Entity("CoachBoard.Core.Entities.Player", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
-                b.Property<DateTime?>("JoinedDate")
-                    .HasColumnType("datetime2");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                b.Property<int?>("KitNumber")
-                    .HasColumnType("int");
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("Name")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<int>("Overall")
-                    .HasColumnType("int");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<int>("Position")
-                    .HasColumnType("int");
+                    b.Property<DateTime?>("JoinedDate")
+                        .HasColumnType("datetime2");
 
-                b.Property<int>("Status")
-                    .HasColumnType("int");
+                    b.Property<int?>("KitNumber")
+                        .HasColumnType("int");
 
-                b.Property<long>("TeamId")
-                    .HasColumnType("bigint");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.HasKey("Id");
+                    b.Property<int>("Overall")
+                        .HasColumnType("int");
 
-                b.HasIndex("TeamId");
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
 
-                b.ToTable("Players");
-            });
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Team", b =>
-            {
-                b.Property<long>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bigint");
+                    b.Property<long>("TeamId")
+                        .HasColumnType("bigint");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.HasKey("Id");
 
-                b.Property<long>("CareerId")
-                    .HasColumnType("bigint");
+                    b.HasIndex("TeamId");
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.ToTable("Players");
+                });
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+            modelBuilder.Entity("CoachBoard.Core.Entities.Team", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
-                b.Property<string>("Name")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                b.Property<string>("Stadium")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<long>("CareerId")
+                        .HasColumnType("bigint");
 
-                b.HasKey("Id");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.HasIndex("CareerId");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.ToTable("Teams");
-            });
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Transfer", b =>
-            {
-                b.Property<long>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bigint");
+                    b.Property<string>("Stadium")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.HasKey("Id");
 
-                b.Property<int>("ContractYears")
-                    .HasColumnType("int");
+                    b.HasIndex("CareerId");
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.ToTable("Teams");
+                });
 
-                b.Property<decimal>("Fee")
-                    .HasPrecision(14, 8)
-                    .HasColumnType("decimal(14,8)");
+            modelBuilder.Entity("CoachBoard.Core.Entities.Transfer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                b.Property<long>("PlayerTransferredId")
-                    .HasColumnType("bigint");
+                    b.Property<int>("ContractYears")
+                        .HasColumnType("int");
 
-                b.Property<decimal>("Salary")
-                    .HasPrecision(14, 8)
-                    .HasColumnType("decimal(14,8)");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<int>("Status")
-                    .HasColumnType("int");
+                    b.Property<decimal>("Fee")
+                        .HasPrecision(14, 8)
+                        .HasColumnType("decimal(14,8)");
 
-                b.Property<long>("TeamId")
-                    .HasColumnType("bigint");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.HasKey("Id");
+                    b.Property<long>("PlayerTransferredId")
+                        .HasColumnType("bigint");
 
-                b.HasIndex("PlayerTransferredId");
+                    b.Property<decimal>("Salary")
+                        .HasPrecision(14, 8)
+                        .HasColumnType("decimal(14,8)");
 
-                b.HasIndex("TeamId");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
-                b.ToTable("Transfers");
-            });
+                    b.Property<long>("TeamId")
+                        .HasColumnType("bigint");
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.User", b =>
-            {
-                b.Property<long>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bigint");
+                    b.HasKey("Id");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.HasIndex("PlayerTransferredId");
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.HasIndex("TeamId");
 
-                b.Property<string>("Email")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.ToTable("Transfers");
+                });
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+            modelBuilder.Entity("CoachBoard.Core.Entities.User", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
-                b.Property<string>("Nickname")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                b.Property<string>("Password")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<int>("Role")
-                    .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.HasKey("Id");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.ToTable("Users");
-            });
+                    b.Property<string>("Nickname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-        modelBuilder.Entity("FixturePlayer", b =>
-            {
-                b.Property<long>("FixturesId")
-                    .HasColumnType("bigint");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<long>("LineUpId")
-                    .HasColumnType("bigint");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
-                b.HasKey("FixturesId", "LineUpId");
+                    b.HasKey("Id");
 
-                b.HasIndex("LineUpId");
+                    b.ToTable("Users");
+                });
 
-                b.ToTable("FixturePlayer");
-            });
+            modelBuilder.Entity("FixturePlayer", b =>
+                {
+                    b.Property<long>("FixturesId")
+                        .HasColumnType("bigint");
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Assist", b =>
-            {
-                b.HasOne("CoachBoard.Core.Entities.Goal", null)
-                    .WithOne("Assist")
-                    .HasForeignKey("CoachBoard.Core.Entities.Assist", "GoalId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                    b.Property<long>("LineUpId")
+                        .HasColumnType("bigint");
 
-                b.HasOne("CoachBoard.Core.Entities.Player", null)
-                    .WithMany("Assists")
-                    .HasForeignKey("PlayerAssistedId")
-                    .OnDelete(DeleteBehavior.NoAction)
-                    .IsRequired();
-            });
+                    b.HasKey("FixturesId", "LineUpId");
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Career", b =>
-            {
-                b.HasOne("CoachBoard.Core.Entities.User", null)
-                    .WithMany("Careers")
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
+                    b.HasIndex("LineUpId");
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Fixture", b =>
-            {
-                b.HasOne("CoachBoard.Core.Entities.Opponent", null)
-                    .WithMany("Fixtures")
-                    .HasForeignKey("OpponentId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                    b.ToTable("FixturePlayer");
+                });
 
-                b.HasOne("CoachBoard.Core.Entities.Team", null)
-                    .WithMany("Fixtures")
-                    .HasForeignKey("TeamId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
+            modelBuilder.Entity("CoachBoard.Core.Entities.Assist", b =>
+                {
+                    b.HasOne("CoachBoard.Core.Entities.Goal", null)
+                        .WithOne("Assist")
+                        .HasForeignKey("CoachBoard.Core.Entities.Assist", "GoalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Goal", b =>
-            {
-                b.HasOne("CoachBoard.Core.Entities.Fixture", null)
-                    .WithMany("Goals")
-                    .HasForeignKey("FixtureId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
+                    b.HasOne("CoachBoard.Core.Entities.Player", null)
+                        .WithMany("Assists")
+                        .HasForeignKey("PlayerAssistedId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Player", b =>
-            {
-                b.HasOne("CoachBoard.Core.Entities.Team", null)
-                    .WithMany("Squad")
-                    .HasForeignKey("TeamId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
+            modelBuilder.Entity("CoachBoard.Core.Entities.Career", b =>
+                {
+                    b.HasOne("CoachBoard.Core.Entities.User", null)
+                        .WithMany("Careers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Team", b =>
-            {
-                b.HasOne("CoachBoard.Core.Entities.Career", null)
-                    .WithMany("Teams")
-                    .HasForeignKey("CareerId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
+            modelBuilder.Entity("CoachBoard.Core.Entities.Fixture", b =>
+                {
+                    b.HasOne("CoachBoard.Core.Entities.Opponent", null)
+                        .WithMany("Fixtures")
+                        .HasForeignKey("OpponentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Transfer", b =>
-            {
-                b.HasOne("CoachBoard.Core.Entities.Player", null)
-                    .WithMany("Transfers")
-                    .HasForeignKey("PlayerTransferredId")
-                    .OnDelete(DeleteBehavior.NoAction)
-                    .IsRequired();
+                    b.HasOne("CoachBoard.Core.Entities.Team", null)
+                        .WithMany("Fixtures")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                b.HasOne("CoachBoard.Core.Entities.Team", null)
-                    .WithMany("Transfers")
-                    .HasForeignKey("TeamId")
-                    .OnDelete(DeleteBehavior.NoAction)
-                    .IsRequired();
-            });
+            modelBuilder.Entity("CoachBoard.Core.Entities.Goal", b =>
+                {
+                    b.HasOne("CoachBoard.Core.Entities.Fixture", null)
+                        .WithMany("Goals")
+                        .HasForeignKey("FixtureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-        modelBuilder.Entity("FixturePlayer", b =>
-            {
-                b.HasOne("CoachBoard.Core.Entities.Fixture", null)
-                    .WithMany()
-                    .HasForeignKey("FixturesId")
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .IsRequired();
+                    b.HasOne("CoachBoard.Core.Entities.Player", "PlayerScored")
+                        .WithMany("Goals")
+                        .HasForeignKey("PlayerScoredId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                b.HasOne("CoachBoard.Core.Entities.Player", null)
-                    .WithMany()
-                    .HasForeignKey("LineUpId")
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .IsRequired();
-            });
+                    b.Navigation("PlayerScored");
+                });
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Career", b =>
-            {
-                b.Navigation("Teams");
-            });
+            modelBuilder.Entity("CoachBoard.Core.Entities.Opponent", b =>
+                {
+                    b.HasOne("CoachBoard.Core.Entities.Career", null)
+                        .WithMany("Opponents")
+                        .HasForeignKey("CareerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Fixture", b =>
-            {
-                b.Navigation("Goals");
-            });
+            modelBuilder.Entity("CoachBoard.Core.Entities.Player", b =>
+                {
+                    b.HasOne("CoachBoard.Core.Entities.Team", null)
+                        .WithMany("Squad")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Goal", b =>
-            {
-                b.Navigation("Assist");
-            });
+            modelBuilder.Entity("CoachBoard.Core.Entities.Team", b =>
+                {
+                    b.HasOne("CoachBoard.Core.Entities.Career", null)
+                        .WithMany("Teams")
+                        .HasForeignKey("CareerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Opponent", b =>
-            {
-                b.Navigation("Fixtures");
-            });
+            modelBuilder.Entity("CoachBoard.Core.Entities.Transfer", b =>
+                {
+                    b.HasOne("CoachBoard.Core.Entities.Player", null)
+                        .WithMany("Transfers")
+                        .HasForeignKey("PlayerTransferredId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Player", b =>
-            {
-                b.Navigation("Assists");
+                    b.HasOne("CoachBoard.Core.Entities.Team", null)
+                        .WithMany("Transfers")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
 
-                b.Navigation("Transfers");
-            });
+            modelBuilder.Entity("FixturePlayer", b =>
+                {
+                    b.HasOne("CoachBoard.Core.Entities.Fixture", null)
+                        .WithMany()
+                        .HasForeignKey("FixturesId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.Team", b =>
-            {
-                b.Navigation("Fixtures");
+                    b.HasOne("CoachBoard.Core.Entities.Player", null)
+                        .WithMany()
+                        .HasForeignKey("LineUpId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
 
-                b.Navigation("Squad");
+            modelBuilder.Entity("CoachBoard.Core.Entities.Career", b =>
+                {
+                    b.Navigation("Opponents");
 
-                b.Navigation("Transfers");
-            });
+                    b.Navigation("Teams");
+                });
 
-        modelBuilder.Entity("CoachBoard.Core.Entities.User", b =>
-            {
-                b.Navigation("Careers");
-            });
+            modelBuilder.Entity("CoachBoard.Core.Entities.Fixture", b =>
+                {
+                    b.Navigation("Goals");
+                });
+
+            modelBuilder.Entity("CoachBoard.Core.Entities.Goal", b =>
+                {
+                    b.Navigation("Assist");
+                });
+
+            modelBuilder.Entity("CoachBoard.Core.Entities.Opponent", b =>
+                {
+                    b.Navigation("Fixtures");
+                });
+
+            modelBuilder.Entity("CoachBoard.Core.Entities.Player", b =>
+                {
+                    b.Navigation("Assists");
+
+                    b.Navigation("Goals");
+
+                    b.Navigation("Transfers");
+                });
+
+            modelBuilder.Entity("CoachBoard.Core.Entities.Team", b =>
+                {
+                    b.Navigation("Fixtures");
+
+                    b.Navigation("Squad");
+
+                    b.Navigation("Transfers");
+                });
+
+            modelBuilder.Entity("CoachBoard.Core.Entities.User", b =>
+                {
+                    b.Navigation("Careers");
+                });
 #pragma warning restore 612, 618
+        }
     }
 }

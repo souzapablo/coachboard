@@ -9,7 +9,7 @@ public record CareerDetailsView(
     DateTime LastUpdate)
 {
     public static CareerDetailsView Map(Career career) =>
-        new CareerDetailsView(
+        new(
             career.Id,
             career.ManagerName,
             career.Teams.Select(team => team.Name),

@@ -6,6 +6,7 @@ using CoachBoard.Application.ViewModels.Users;
 using CoachBoard.Core.Entities;
 using CoachBoard.Core.Models;
 using CoachBoard.Core.Repositories;
+using CoachBoard.UnitTests.Mocks;
 using FluentAssertions;
 using Moq;
 using Xunit;
@@ -22,12 +23,7 @@ public class FindAllUsersQueryTests
         // Assert
         var paginatedUsers = new PaginationResult<User>
         {
-            Data = new List<User>
-            {
-                new("Test", "test@email.com", "test"),
-                new("Filter is ok", "test@email.com", "test"),
-                new("Test", "test@email.com", "test")
-            }
+            Data = UserMock.GenerateMany(3)
         };
         var query = new FindAllUsersQuery(null);
         var queryHandler = GenerateQueryHandler;
@@ -38,7 +34,7 @@ public class FindAllUsersQueryTests
         var sut = await queryHandler.Handle(query, new CancellationToken());
 
         // Assert
-        sut.Data.Count.Should().Be(3);
+        sut.Data.Count.Should().Be(paginatedUsers.Data.Count);
         sut.Data.Should().BeOfType<List<UserView>>();
     }
 

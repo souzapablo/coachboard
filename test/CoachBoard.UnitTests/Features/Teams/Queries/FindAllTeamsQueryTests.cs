@@ -8,6 +8,7 @@ using Moq;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using CoachBoard.UnitTests.Mocks;
 using Xunit;
 
 namespace CoachBoard.UnitTests.Features.Teams.Queries;
@@ -22,12 +23,7 @@ public class FindAllTeamsQueryTests
         // Arrange
         var paginatedTeams = new PaginationResult<Team>
         {
-            Data = new List<Team>
-            {
-                new(1L, "Chelsea", "Stamford Bridge"),
-                new(2L, "Arsenal", "Emirates Stadium"),
-                new(1L, "Brighton", "The Amex Stadium")
-            }
+            Data = TeamMock.GenerateMany(3)
         };
         var query = new FindAllTeamsQuery(null);
         var queryHandler = GenerateQueryHandler;
@@ -42,6 +38,6 @@ public class FindAllTeamsQueryTests
         sut.Data.Should().BeOfType<List<TeamView>>();
     }
 
-    public FindAllTeamsQueryHandler GenerateQueryHandler =>
+    private FindAllTeamsQueryHandler GenerateQueryHandler =>
         new(_teamRepositoryMock.Object);
 }

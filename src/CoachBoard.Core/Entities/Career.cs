@@ -13,10 +13,12 @@ public class Career : BaseEntity
         UserId = userId;
         ManagerName = managerName;
         Teams = new List<Team>();
+        Opponents = new List<Opponent>();
     }
 
     public long UserId { get; private set; }
     public string ManagerName { get; private set; } = string.Empty;
     public DateTime LastUpdate { get; private set; } = DateTime.UtcNow;
     public List<Team> Teams { get; private set; } = new();
+    public List<Opponent> Opponents { get; private set; } = new();
 }

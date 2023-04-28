@@ -8,7 +8,7 @@ public record CareerView(
     DateTime LastUpdate)
 {
     public static CareerView Map(Career career) =>
-        new CareerView(
+        new(
             career.Id,
             career.ManagerName,
             career.LastUpdate);

@@ -10,7 +10,7 @@ public record UserView(
     Role Role)
 {
     public static UserView Map(User user) =>
-        new UserView(
+        new(
             user.Id,
             user.Nickname,
             user.Email,

@@ -8,7 +8,7 @@ public record TeamView(
     string Name)
 {
     public static TeamView Map(Team team) =>
-        new TeamView(
+        new(
             team.Id,
             team.CareerId,
             team.Name);

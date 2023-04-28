@@ -15,7 +15,9 @@ public class UnitOfWork : IUnitOfWork
         ITeamRepository teams,
         IPlayerRepository players,
         IFixtureRepository fixtures,
-        IOpponentRepository opponents)
+        IOpponentRepository opponents,
+        IAssistRepository assists,
+        IGoalRepository goals)
     {
         _dbContext = dbContext;
         Users = users;
@@ -24,6 +26,8 @@ public class UnitOfWork : IUnitOfWork
         Teams = teams;
         Fixtures = fixtures;
         Opponents = opponents;
+        Assists = assists;
+        Goals = goals;
     }
 
     public IUserRepository Users { get; }
@@ -32,6 +36,8 @@ public class UnitOfWork : IUnitOfWork
     public IPlayerRepository Players { get; }
     public IFixtureRepository Fixtures { get; }
     public IOpponentRepository Opponents { get; }
+    public IAssistRepository Assists { get; }
+    public IGoalRepository Goals { get; }
 
     public async Task BeginTransactionAsync()
     {
