@@ -4,6 +4,10 @@ namespace CoachBoard.Core.Entities;
 
 public class Opponent : BaseEntity
 {
+    public Opponent()
+    {
+    }
+
     public Opponent(string name, string stadium)
     {
         Name = name;

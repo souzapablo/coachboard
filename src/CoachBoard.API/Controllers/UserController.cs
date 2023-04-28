@@ -3,7 +3,7 @@ using CoachBoard.Application.Features.Users.Commands.Create;
 using CoachBoard.Application.Features.Users.Commands.Delete;
 using CoachBoard.Application.Features.Users.Queries.FindAll;
 using CoachBoard.Application.Features.Users.Queries.FindById;
-using CoachBoard.Application.InputModels;
+using CoachBoard.Application.InputModels.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

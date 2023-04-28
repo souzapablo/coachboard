@@ -5,6 +5,10 @@ namespace CoachBoard.Core.Entities;
 
 public class Player : BaseEntity
 {
+    public Player()
+    {
+    }
+
     public Player(long teamId, string name, DateTime birthDate, DateTime? joinedDate, int overall, int? kitNumber,
         PlayerPosition position, PlayerStatus status)
     {
@@ -20,7 +24,7 @@ public class Player : BaseEntity
         Transfers = new List<Transfer>();
         Assists = new List<Assist>();
     }
-    
+
     public long TeamId { get; private set; }
     public string Name { get; private set; }
     public DateTime BirthDate { get; private set; }
@@ -28,8 +32,11 @@ public class Player : BaseEntity
     public int Overall { get; private set; }
     public int? KitNumber { get; private set; }
     public PlayerPosition Position { get; private set; }
-    public List<Fixture> Fixtures { get; private set; }
-    public List<Transfer> Transfers { get; private set; }
-    public List<Assist> Assists { get; private set; }
+    public List<Fixture> Fixtures { get; private set; } = new();
+    public List<Transfer> Transfers { get; private set; } = new();
+    public List<Assist> Assists { get; private set; } = new();
     public PlayerStatus Status { get; private set; }
+
+    public void AddFixture(Fixture fixture) =>
+        Fixtures.Add(fixture);
 }

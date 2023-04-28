@@ -8,6 +8,8 @@ public interface IUnitOfWork
     ICareerRepository Careers { get; }
     ITeamRepository Teams { get; }
     IPlayerRepository Players { get; }
+    IFixtureRepository Fixtures { get; }
+    IOpponentRepository Opponents { get; }
     Task<int> CompleteAsync();
     Task BeginTransactionAsync();
     Task CommitAsync();

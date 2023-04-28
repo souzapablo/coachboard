@@ -5,13 +5,12 @@ namespace CoachBoard.Core.Entities;
 
 public class Fixture : BaseEntity
 {
-    public Fixture(long teamId, long opponentId, FixtureLocation location, Competition competition, int opponentGoals)
+    public Fixture(long teamId, long opponentId, FixtureLocation location, Competition competition)
     {
         TeamId = teamId;
         OpponentId = opponentId;
         Location = location;
         Competition = competition;
-        OpponentGoals = opponentGoals;
         Goals = new List<Goal>();
         LineUp = new List<Player>();
     }

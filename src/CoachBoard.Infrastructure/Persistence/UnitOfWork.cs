@@ -13,19 +13,25 @@ public class UnitOfWork : IUnitOfWork
         IUserRepository users,
         ICareerRepository careers,
         ITeamRepository teams,
-        IPlayerRepository players)
+        IPlayerRepository players,
+        IFixtureRepository fixtures,
+        IOpponentRepository opponents)
     {
         _dbContext = dbContext;
         Users = users;
         Careers = careers;
         Players = players;
         Teams = teams;
+        Fixtures = fixtures;
+        Opponents = opponents;
     }
 
     public IUserRepository Users { get; }
     public ICareerRepository Careers { get; }
     public ITeamRepository Teams { get; }
     public IPlayerRepository Players { get; }
+    public IFixtureRepository Fixtures { get; }
+    public IOpponentRepository Opponents { get; }
 
     public async Task BeginTransactionAsync()
     {
