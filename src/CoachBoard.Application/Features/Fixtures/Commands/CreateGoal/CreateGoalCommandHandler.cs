@@ -17,20 +17,29 @@ public class CreateGoalCommandHandler : IRequestHandler<CreateGoalCommand, long>
     public async Task<long> Handle(CreateGoalCommand request, CancellationToken cancellationToken)
     {
         var fixture = await _unitOfWork.Fixtures.FindByIdAsync(request.FixtureId);
-
+        
         if (fixture is null)
             throw new EntityNotFoundException<Fixture>(request.FixtureId);
 
-        var player = await _unitOfWork.Players.FindByIdAsync(request.PlayerScoredId);
-
-        if (player is null)
-            throw new EntityNotFoundException<Player>(request.PlayerScoredId);
-
-        var goal = new Goal(fixture.Id, player.Id);
-
         await _unitOfWork.BeginTransactionAsync();
 
-        await _unitOfWork.Goals.Create(goal);
+        if (!request.PlayerScoredId.HasValue)
+        {
+            var ownGoal = new Goal(request.FixtureId);
+            await _unitOfWork.Goals.CreateAsync(ownGoal);
+            await _unitOfWork.CompleteAsync();
+            await _unitOfWork.CommitAsync();
+            return fixture.Id;
+        }
+
+        var player = await _unitOfWork.Players.FindByIdAsync(request.PlayerScoredId.Value);
+
+        if (player is null)
+            throw new EntityNotFoundException<Player>(request.PlayerScoredId.Value);
+
+        var goal = new Goal(fixture.Id, player.Id);
+        
+        await _unitOfWork.Goals.CreateAsync(goal);
 
         await _unitOfWork.CompleteAsync();
 
@@ -40,8 +49,8 @@ public class CreateGoalCommandHandler : IRequestHandler<CreateGoalCommand, long>
 
             if (playerAssisted is null)
                 throw new EntityNotFoundException<Player>(request.PlayerAssistedId.Value);
-
-            var assist = new Assist(goal.Id, playerAssisted.Id);
+            
+            var assist = new Assist(fixture.Id, goal.Id, playerAssisted.Id);
 
             await _unitOfWork.Assists.Create(assist);
 

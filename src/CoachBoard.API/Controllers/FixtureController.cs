@@ -1,5 +1,9 @@
 ﻿using CoachBoard.Application.Features.Fixtures.Commands.Create;
 using CoachBoard.Application.Features.Fixtures.Commands.CreateGoal;
+using CoachBoard.Application.Features.Fixtures.Commands.Delete;
+using CoachBoard.Application.Features.Fixtures.Queries.FindAll;
+using CoachBoard.Application.Features.Fixtures.Queries.FindById;
+using CoachBoard.Application.Features.Goals.Queries.FindById;
 using CoachBoard.Application.InputModels.Fixtures;
 using CoachBoard.Application.InputModels.Goals;
 using MediatR;
@@ -21,9 +25,19 @@ public class FixtureController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> FindById()
+    public async Task<IActionResult> FindAll([FromQuery] FindAllFixturesQuery query)
     {
-        return Ok();
+        var fixtures = await _mediator.Send(query);
+
+        return Ok(fixtures);
+    }
+
+    [HttpGet("{id:long}")]
+    public async Task<IActionResult> FindById([FromRoute] long id)
+    {
+        var query = new FindFixtureByIdQuery(id);
+        var fixture = await _mediator.Send(query);
+        return Ok(fixture);
     }
 
     [HttpPost("team/{teamId:long}")]
@@ -41,10 +55,20 @@ public class FixtureController : ControllerBase
         return CreatedAtAction(nameof(FindById), new { Id = id }, command);
     }
 
+    [HttpDelete("{id:long}")]
+    public async Task<IActionResult> Delete([FromRoute] long id)
+    {
+        var command = new DeleteFixtureCommand(id);
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
     [HttpGet("goal/{goalId:long}")]
     public async Task<IActionResult> FindGoal([FromRoute] long goalId)
     {
-        return Ok();
+        var query = new FindGoalByIdQuery(goalId);
+        var goal = await _mediator.Send(query);
+        return Ok(goal);
     }
 
     [HttpPost("{id:long}/goal")]
@@ -53,8 +77,7 @@ public class FixtureController : ControllerBase
         var command = new CreateGoalCommand(
             id,
             input.PlayerScoredId,
-            input.PlayerAssistedId,
-            input.IsOwnGoal);
+            input.PlayerAssistedId);
 
         var goalId = await _mediator.Send(command);
 

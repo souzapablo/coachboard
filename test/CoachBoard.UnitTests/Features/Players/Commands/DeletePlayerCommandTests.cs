@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using CoachBoard.Application.Features.Opponents.Commands.Delete;
 using CoachBoard.Application.Features.Players.Commands.Delete;
 using CoachBoard.Core.Entities;
 using CoachBoard.Core.Exceptions;

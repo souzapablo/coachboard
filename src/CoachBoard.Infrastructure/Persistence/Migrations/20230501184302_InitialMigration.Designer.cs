@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoachBoard.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(CoachBoardDbContext))]
-    [Migration("20230428162258_UpdateOpponentAndCareer")]
-    partial class UpdateOpponentAndCareer
+    [Migration("20230501184302_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace CoachBoard.Infrastructure.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<long>("AssistFixtureId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -46,6 +49,8 @@ namespace CoachBoard.Infrastructure.Persistence.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AssistFixtureId");
 
                     b.HasIndex("GoalId")
                         .IsUnique();
@@ -132,6 +137,9 @@ namespace CoachBoard.Infrastructure.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<long?>("AssistId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -144,7 +152,7 @@ namespace CoachBoard.Infrastructure.Persistence.Migrations
                     b.Property<bool>("IsOwnGoal")
                         .HasColumnType("bit");
 
-                    b.Property<long>("PlayerScoredId")
+                    b.Property<long?>("PlayerScoredId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -360,46 +368,58 @@ namespace CoachBoard.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("CoachBoard.Core.Entities.Assist", b =>
                 {
-                    b.HasOne("CoachBoard.Core.Entities.Goal", null)
-                        .WithOne("Assist")
-                        .HasForeignKey("CoachBoard.Core.Entities.Assist", "GoalId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("CoachBoard.Core.Entities.Fixture", "Fixture")
+                        .WithMany("Assists")
+                        .HasForeignKey("AssistFixtureId")
                         .IsRequired();
 
-                    b.HasOne("CoachBoard.Core.Entities.Player", null)
+                    b.HasOne("CoachBoard.Core.Entities.Goal", "Goal")
+                        .WithOne("Assist")
+                        .HasForeignKey("CoachBoard.Core.Entities.Assist", "GoalId");
+
+                    b.HasOne("CoachBoard.Core.Entities.Player", "PlayerAssisted")
                         .WithMany("Assists")
-                        .HasForeignKey("PlayerAssistedId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("PlayerAssistedId");
+
+                    b.Navigation("Fixture");
+
+                    b.Navigation("Goal");
+
+                    b.Navigation("PlayerAssisted");
                 });
 
             modelBuilder.Entity("CoachBoard.Core.Entities.Career", b =>
                 {
-                    b.HasOne("CoachBoard.Core.Entities.User", null)
+                    b.HasOne("CoachBoard.Core.Entities.User", "User")
                         .WithMany("Careers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CoachBoard.Core.Entities.Fixture", b =>
                 {
-                    b.HasOne("CoachBoard.Core.Entities.Opponent", null)
+                    b.HasOne("CoachBoard.Core.Entities.Opponent", "Opponent")
                         .WithMany("Fixtures")
                         .HasForeignKey("OpponentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CoachBoard.Core.Entities.Team", null)
+                    b.HasOne("CoachBoard.Core.Entities.Team", "Team")
                         .WithMany("Fixtures")
                         .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Opponent");
+
+                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("CoachBoard.Core.Entities.Goal", b =>
                 {
-                    b.HasOne("CoachBoard.Core.Entities.Fixture", null)
+                    b.HasOne("CoachBoard.Core.Entities.Fixture", "Fixture")
                         .WithMany("Goals")
                         .HasForeignKey("FixtureId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -407,53 +427,62 @@ namespace CoachBoard.Infrastructure.Persistence.Migrations
 
                     b.HasOne("CoachBoard.Core.Entities.Player", "PlayerScored")
                         .WithMany("Goals")
-                        .HasForeignKey("PlayerScoredId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("PlayerScoredId");
+
+                    b.Navigation("Fixture");
 
                     b.Navigation("PlayerScored");
                 });
 
             modelBuilder.Entity("CoachBoard.Core.Entities.Opponent", b =>
                 {
-                    b.HasOne("CoachBoard.Core.Entities.Career", null)
+                    b.HasOne("CoachBoard.Core.Entities.Career", "Career")
                         .WithMany("Opponents")
                         .HasForeignKey("CareerId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Career");
                 });
 
             modelBuilder.Entity("CoachBoard.Core.Entities.Player", b =>
                 {
-                    b.HasOne("CoachBoard.Core.Entities.Team", null)
+                    b.HasOne("CoachBoard.Core.Entities.Team", "Team")
                         .WithMany("Squad")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("CoachBoard.Core.Entities.Team", b =>
                 {
-                    b.HasOne("CoachBoard.Core.Entities.Career", null)
+                    b.HasOne("CoachBoard.Core.Entities.Career", "Career")
                         .WithMany("Teams")
                         .HasForeignKey("CareerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Career");
                 });
 
             modelBuilder.Entity("CoachBoard.Core.Entities.Transfer", b =>
                 {
-                    b.HasOne("CoachBoard.Core.Entities.Player", null)
+                    b.HasOne("CoachBoard.Core.Entities.Player", "PlayerTransferred")
                         .WithMany("Transfers")
                         .HasForeignKey("PlayerTransferredId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CoachBoard.Core.Entities.Team", null)
+                    b.HasOne("CoachBoard.Core.Entities.Team", "Team")
                         .WithMany("Transfers")
                         .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.Navigation("PlayerTransferred");
+
+                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("FixturePlayer", b =>
@@ -461,13 +490,11 @@ namespace CoachBoard.Infrastructure.Persistence.Migrations
                     b.HasOne("CoachBoard.Core.Entities.Fixture", null)
                         .WithMany()
                         .HasForeignKey("FixturesId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CoachBoard.Core.Entities.Player", null)
                         .WithMany()
                         .HasForeignKey("LineUpId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -480,6 +507,8 @@ namespace CoachBoard.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("CoachBoard.Core.Entities.Fixture", b =>
                 {
+                    b.Navigation("Assists");
+
                     b.Navigation("Goals");
                 });
 

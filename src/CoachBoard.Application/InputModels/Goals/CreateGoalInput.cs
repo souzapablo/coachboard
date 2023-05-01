@@ -1,6 +1,5 @@
 ﻿namespace CoachBoard.Application.InputModels.Goals;
 
 public record CreateGoalInput(
-    long PlayerScoredId,
-    long? PlayerAssistedId,
-    bool IsOwnGoal);
+    long? PlayerScoredId,
+    long? PlayerAssistedId);

@@ -11,7 +11,7 @@ public record PlayerView(
     int Overall,
     PlayerPosition Position)
 {
-    public static PlayerView Map(Player player) =>
+    public static PlayerView? Map(Player player) =>
         new PlayerView(
             player.Id,
             player.TeamId,

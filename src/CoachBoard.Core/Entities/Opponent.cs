@@ -17,6 +17,7 @@ public class Opponent : BaseEntity
     }
 
     public long CareerId { get; private set; }
+    public Career Career { get; private set; } = null!;
     public string Name { get; private set; } = string.Empty;
     public string Stadium { get; private set; } = string.Empty;
     public List<Fixture> Fixtures { get; private set; } = new();

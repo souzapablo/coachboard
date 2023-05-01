@@ -9,9 +9,5 @@ public class OpponentConfiguration : IEntityTypeConfiguration<Opponent>
     public void Configure(EntityTypeBuilder<Opponent> builder)
     {
         builder.HasKey(opponent => opponent.Id);
-
-        builder.HasMany(opponent => opponent.Fixtures)
-            .WithOne()
-            .HasForeignKey(fixture => fixture.OpponentId);
     }
 }

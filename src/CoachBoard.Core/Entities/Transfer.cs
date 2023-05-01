@@ -17,7 +17,9 @@ public class Transfer : BaseEntity
     }
 
     public long TeamId { get; private set; }
+    public Team Team { get; private set; } = null!;
     public long PlayerTransferredId { get; private set; }
+    public Player PlayerTransferred { get; private set; } = null!;
     public TransferStatus Status { get; private set; }
     public decimal Fee { get; private set; }
     public decimal Salary { get; private set; }

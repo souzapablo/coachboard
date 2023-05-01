@@ -29,6 +29,7 @@ public class Player : BaseEntity
     }
 
     public long TeamId { get; private set; }
+    public Team Team { get; private set; } = null!;
     public string Name { get; private set; } = string.Empty;
     public DateTime BirthDate { get; private set; }
     public DateTime? JoinedDate { get; private set; }

@@ -17,6 +17,7 @@ public class Career : BaseEntity
     }
 
     public long UserId { get; private set; }
+    public User User { get; private set; } = null!;
     public string ManagerName { get; private set; } = string.Empty;
     public DateTime LastUpdate { get; private set; } = DateTime.UtcNow;
     public List<Team> Teams { get; private set; } = new();

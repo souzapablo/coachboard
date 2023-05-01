@@ -10,16 +10,23 @@ public class PlayerConfiguration : IEntityTypeConfiguration<Player>
     {
         builder.HasKey(player => player.Id);
 
-        builder.HasMany(player => player.Transfers)
-            .WithOne()
-            .HasForeignKey(transfer => transfer.PlayerTransferredId)
-            .OnDelete(DeleteBehavior.NoAction);
-        ;
-
+        builder.HasMany(player => player.Goals)
+            .WithOne(goal => goal.PlayerScored)
+            .HasForeignKey(goal => goal.PlayerScoredId)
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.ClientSetNull);
+        
         builder.HasMany(player => player.Assists)
-            .WithOne()
+            .WithOne(assist => assist.PlayerAssisted)
             .HasForeignKey(assist => assist.PlayerAssistedId)
-            .OnDelete(DeleteBehavior.NoAction);
-        ;
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.ClientSetNull);
+
+        builder.HasMany(fixture => fixture.Fixtures)
+            .WithMany(player => player.LineUp)
+            .UsingEntity<Dictionary<string, object>>(
+                "FixturePlayer",
+                j => j.HasOne<Fixture>().WithMany().OnDelete(DeleteBehavior.ClientSetNull),
+                j => j.HasOne<Player>().WithMany().OnDelete(DeleteBehavior.ClientSetNull));
     }
 }
