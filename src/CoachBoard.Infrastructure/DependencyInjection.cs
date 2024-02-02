@@ -1,5 +1,4 @@
-﻿using CoachBoard.Domain.Entities;
-using CoachBoard.Domain.Repositories;
+﻿using CoachBoard.Domain.Repositories;
 using CoachBoard.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

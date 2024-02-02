@@ -1,5 +1,6 @@
 using CoachBoard.Application;
 using CoachBoard.Infrastructure;
+using CoachBoard.Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddInfrastructure(builder.Configuration)
-    .AddApplication();
+    .AddApplication()
+    .AddPresentation();
 
 var app = builder.Build();
 
