@@ -5,27 +5,24 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A1D95F4F-B346-45E4-8830-7205030763F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoachBoard.API", "src\CoachBoard.API\CoachBoard.API.csproj", "{68667FE0-ACE8-4808-BF69-742A8A5D91CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoachBoard.API", "src\CoachBoard.API\CoachBoard.API.csproj", "{68667FE0-ACE8-4808-BF69-742A8A5D91CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoachBoard.Application", "src\CoachBoard.Application\CoachBoard.Application.csproj", "{6C55E280-3FE6-4116-8877-6AC4824AF426}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoachBoard.Application", "src\CoachBoard.Application\CoachBoard.Application.csproj", "{6C55E280-3FE6-4116-8877-6AC4824AF426}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoachBoard.Domain", "src\CoachBoard.Domain\CoachBoard.Domain.csproj", "{E8D8F66F-3F6C-4091-8B97-90F7C05B63C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoachBoard.Domain", "src\CoachBoard.Domain\CoachBoard.Domain.csproj", "{E8D8F66F-3F6C-4091-8B97-90F7C05B63C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoachBoard.Infrastructure", "src\CoachBoard.Infrastructure\CoachBoard.Infrastructure.csproj", "{7200FBBE-7322-404E-8268-1B087C5C6CC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoachBoard.Infrastructure", "src\CoachBoard.Infrastructure\CoachBoard.Infrastructure.csproj", "{7200FBBE-7322-404E-8268-1B087C5C6CC5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4DFF599B-3353-465A-8AD6-4FB94822A609}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoachBoard.UnitTests", "test\CoachBoard.UnitTests\CoachBoard.UnitTests.csproj", "{00293401-8BEF-41F8-B3A2-E7A05B9EAA1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoachBoard.UnitTests", "test\CoachBoard.UnitTests\CoachBoard.UnitTests.csproj", "{00293401-8BEF-41F8-B3A2-E7A05B9EAA1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoachBoard.Presentation", "src\CoachBoard.Presentation\CoachBoard.Presentation.csproj", "{C1ED067F-DFAC-4179-AF04-AAE62A3E9EF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoachBoard.Presentation", "src\CoachBoard.Presentation\CoachBoard.Presentation.csproj", "{C1ED067F-DFAC-4179-AF04-AAE62A3E9EF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{68667FE0-ACE8-4808-BF69-742A8A5D91CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -53,6 +50,9 @@ Global
 		{C1ED067F-DFAC-4179-AF04-AAE62A3E9EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1ED067F-DFAC-4179-AF04-AAE62A3E9EF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{68667FE0-ACE8-4808-BF69-742A8A5D91CC} = {A1D95F4F-B346-45E4-8830-7205030763F8}
 		{6C55E280-3FE6-4116-8877-6AC4824AF426} = {A1D95F4F-B346-45E4-8830-7205030763F8}
@@ -60,5 +60,8 @@ Global
 		{7200FBBE-7322-404E-8268-1B087C5C6CC5} = {A1D95F4F-B346-45E4-8830-7205030763F8}
 		{00293401-8BEF-41F8-B3A2-E7A05B9EAA1E} = {4DFF599B-3353-465A-8AD6-4FB94822A609}
 		{C1ED067F-DFAC-4179-AF04-AAE62A3E9EF2} = {A1D95F4F-B346-45E4-8830-7205030763F8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A07087D-C0C4-4D82-AFB3-156D831FC239}
 	EndGlobalSection
 EndGlobal
