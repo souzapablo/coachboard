@@ -1,5 +1,6 @@
 ﻿using CoachBoard.Application.Features.Users.Commands.Create;
 using CoachBoard.Application.Features.Users.Queries.GetById;
+using CoachBoard.Application.Features.Users.Queries.List;
 using CoachBoard.Presentation.InputModels.Users;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,14 @@ namespace CoachBoard.Presentation.Controllers;
 [Route("api/v1/users")]
 public class UsersController(ISender sender) : ControllerBase
 {
+    [HttpGet]
+    public async Task<IActionResult> List()
+    {
+        var result = await sender.Send(new ListUsersQuery());
+
+        return Ok(result);
+    }
+
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id)
     {

@@ -17,4 +17,9 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
         await context
             .Users
             .SingleOrDefaultAsync(user => user.Id == id, cancellationToken: cancellationToken);
+
+    public async Task<List<User>> ListAsync(CancellationToken cancellationToken = default) =>
+        await context
+            .Users
+            .ToListAsync(cancellationToken: cancellationToken);
 }
