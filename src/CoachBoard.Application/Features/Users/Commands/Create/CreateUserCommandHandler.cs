@@ -1,10 +1,13 @@
-﻿using CoachBoard.Domain.Errors;
+﻿using CoachBoard.Domain.Entities;
+using CoachBoard.Domain.Errors;
 using CoachBoard.Domain.Repositories;
 using CoachBoard.Domain.Shared;
 using MediatR;
 
 namespace CoachBoard.Application.Features.Users.Commands.Create;
-public class CreateUserCommandHandler(IUserRepository userRepository) : IRequestHandler<CreateUserCommand, Result<Guid>>
+using BCrypt.Net;
+
+public class CreateUserCommandHandler(IUserRepository userRepository , IUnitOfWork unitOfWork) : IRequestHandler<CreateUserCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(CreateUserCommand request, CancellationToken cancellationToken = default)
     {
@@ -13,6 +16,14 @@ public class CreateUserCommandHandler(IUserRepository userRepository) : IRequest
         if (emailRegistered)
             return Result<Guid>.Failure(DomainErrors.User.RegisteredEmail);
 
-        return Result<Guid>.Success(Guid.NewGuid());
+        var passwordHash = BCrypt.HashPassword(request.Password);
+
+        var user = new User(Guid.NewGuid(), request.Username, request.Email, passwordHash);
+
+        userRepository.Create(user);
+
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return Result<Guid>.Success(user.Id);
     }
 }
