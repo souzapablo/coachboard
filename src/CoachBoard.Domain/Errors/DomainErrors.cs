@@ -6,5 +6,6 @@ public static class DomainErrors
     public static class User
     {
         public static Error RegisteredEmail => new("RegisteredEmail", "The email provided has already been registered.");
+        public static Error UserNotFound(Guid id) => new("UserNotFound", $"User with id {id} not found.");
     }
 }

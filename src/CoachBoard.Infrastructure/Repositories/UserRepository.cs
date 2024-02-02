@@ -12,4 +12,9 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
 
     public void Create(User user) =>
         context.Users.Add(user);
+
+    public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
+        await context
+            .Users
+            .SingleOrDefaultAsync(user => user.Id == id, cancellationToken: cancellationToken);
 }

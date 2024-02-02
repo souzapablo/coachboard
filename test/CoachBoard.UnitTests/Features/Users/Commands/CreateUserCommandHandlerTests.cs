@@ -1,10 +1,6 @@
 ﻿using CoachBoard.Application.Features.Users.Commands.Create;
-using CoachBoard.Domain.Entities;
-using CoachBoard.Domain.Repositories;
-using FluentAssertions;
-using NSubstitute;
 
-namespace CoachBoard.UnitTests.Features.Users;
+namespace CoachBoard.UnitTests.Features.Users.Commands;
 public class CreateUserCommandHandlerTests
 {
     private static readonly IUserRepository _userRepository = Substitute.For<IUserRepository>();

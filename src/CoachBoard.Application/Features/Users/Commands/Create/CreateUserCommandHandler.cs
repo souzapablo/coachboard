@@ -14,7 +14,7 @@ public class CreateUserCommandHandler(IUserRepository userRepository , IUnitOfWo
         var emailRegistered = await userRepository.VerifyIfEmailIsRegisteredAsync(request.Email, cancellationToken);
 
         if (emailRegistered)
-            return Result<Guid>.Failure(DomainErrors.User.RegisteredEmail);
+            return Result.Failure<Guid>(DomainErrors.User.RegisteredEmail);
 
         var passwordHash = BCrypt.HashPassword(request.Password);
 
@@ -24,6 +24,6 @@ public class CreateUserCommandHandler(IUserRepository userRepository , IUnitOfWo
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return Result<Guid>.Success(user.Id);
+        return Result.Success(user.Id);
     }
 }
