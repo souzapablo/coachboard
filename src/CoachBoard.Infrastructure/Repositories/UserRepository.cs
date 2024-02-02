@@ -16,10 +16,14 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
     public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
         await context
             .Users
+            .Include(user => user.Careers)
+            .ThenInclude(career => career.Teams)
             .SingleOrDefaultAsync(user => user.Id == id, cancellationToken: cancellationToken);
 
     public async Task<List<User>> ListAsync(CancellationToken cancellationToken = default) =>
         await context
             .Users
+            .Include(user => user.Careers)
+            .ThenInclude(career => career.Teams)
             .ToListAsync(cancellationToken: cancellationToken);
 }
