@@ -33,6 +33,6 @@ public class UsersController(ISender sender) : ControllerBase
         if (!result.IsSuccess)
             return BadRequest(result);
 
-        return Ok(result);  
+        return CreatedAtAction(nameof(GetById), new { Id = result.Data }, command);  
     }
 }
