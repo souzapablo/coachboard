@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CoachBoard.Domain.Entities;
+using CoachBoard.Domain.Repositories;
+using CoachBoard.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +17,16 @@ public static class DependencyInjection
             options.UseNpgsql(connectionString)
                 .UseSnakeCaseNamingConvention();
         });
+
+        services.AddRepositories();
+
+        return services;
+    }
+
+    public static IServiceCollection AddRepositories(this IServiceCollection services)
+    {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }
