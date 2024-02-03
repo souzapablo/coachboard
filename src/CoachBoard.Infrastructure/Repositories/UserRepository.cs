@@ -8,6 +8,7 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
     public async Task<bool> VerifyIfEmailIsRegisteredAsync(string email, CancellationToken cancellationToken) =>
         await context
             .Users
+            .IgnoreQueryFilters()
             .AnyAsync(user => user.Email.ToLower().Equals(email.ToLower()), cancellationToken: cancellationToken);
 
     public void Create(User user) =>
