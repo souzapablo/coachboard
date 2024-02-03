@@ -7,5 +7,6 @@ public interface IUserRepository
     void Create(User user);
     void Update(User user);
     Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<User?> GetByUsername(string username, CancellationToken cancellationToken = default);
     IQueryable<User> List();
 }

@@ -24,9 +24,17 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
             .ThenInclude(career => career.Teams)
             .SingleOrDefaultAsync(user => user.Id == id, cancellationToken: cancellationToken);
 
+    public async Task<User?> GetByUsername(string username, CancellationToken cancellationToken = default) =>
+        await context
+            .Users
+            .Include(user => user.Careers)
+            .ThenInclude(career => career.Teams)
+            .SingleOrDefaultAsync(user => user.Username.Equals(username), cancellationToken: cancellationToken);
+
     public IQueryable<User> List() =>
          context
             .Users
             .Include(user => user.Careers)
             .ThenInclude(career => career.Teams);
+
 }

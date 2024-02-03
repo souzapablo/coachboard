@@ -4,12 +4,14 @@ using CoachBoard.Application.Features.Users.Queries.GetById;
 using CoachBoard.Application.Features.Users.Queries.List;
 using CoachBoard.Presentation.InputModels.Users;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoachBoard.Presentation.Controllers;
 
 [ApiController]
 [Route("api/v1/users")]
+[Authorize]
 public class UsersController(ISender sender) : ControllerBase
 {
     [HttpGet]
@@ -34,6 +36,7 @@ public class UsersController(ISender sender) : ControllerBase
     }
 
     [HttpPost]
+    [AllowAnonymous]
     public async Task<IActionResult> Create(CreateUserInputModel input)
     {
         var command = new CreateUserCommand(input.Username, input.Email, input.Password);
