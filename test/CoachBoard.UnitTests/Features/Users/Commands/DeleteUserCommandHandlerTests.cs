@@ -4,8 +4,8 @@ using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 namespace CoachBoard.UnitTests.Features.Users.Commands;
 public class DeleteUserCommandHandlerTests
 {
-    private static IUserRepository _userRepository = Substitute.For<IUserRepository>();
-    private static IUnitOfWork _unitOfWork = Substitute.For<IUnitOfWork>();
+    private static readonly IUserRepository _userRepository = Substitute.For<IUserRepository>();
+    private static readonly IUnitOfWork _unitOfWork = Substitute.For<IUnitOfWork>();
     private readonly DeleteUserCommandHandler _commandHandler = new(_userRepository, _unitOfWork);
 
     [Fact(DisplayName = "CommandHandler should return error when user not found")]

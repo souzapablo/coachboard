@@ -19,7 +19,7 @@ public class DeleteUserCommandHandler(
 
         userRepository.Update(user);
 
-        await unitOfWork.SaveChangesAsync();    
+        await unitOfWork.SaveChangesAsync(cancellationToken);    
 
         return Result.Success();    
     }

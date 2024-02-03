@@ -1,6 +1,6 @@
-﻿using CoachBoard.Domain.Repositories;
+﻿using CoachBoard.Application.Extensions;
+using CoachBoard.Domain.Repositories;
 using CoachBoard.Domain.Shared;
-using CoachBoard.Infrastructure.Extensions;
 using MediatR;
 
 namespace CoachBoard.Application.Features.Users.Queries.List;

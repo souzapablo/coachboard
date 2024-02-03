@@ -1,5 +1,8 @@
-﻿using CoachBoard.Domain.Repositories;
+﻿using CoachBoard.Domain.Helpers;
+using CoachBoard.Domain.Repositories;
+using CoachBoard.Infrastructure.Authentication;
 using CoachBoard.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +20,8 @@ public static class DependencyInjection
                 .UseSnakeCaseNamingConvention();
         });
 
+        services.AddJwtAuthentication();
+
         services.AddRepositories();
 
         return services;
@@ -27,6 +32,15 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserRepository, UserRepository>();
 
+        return services;
+    }
+
+    public static IServiceCollection AddJwtAuthentication(this IServiceCollection services)
+    {
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer();
+
+        services.AddScoped<IJwtProvider, JwtProvider>();
         return services;
     }
 }

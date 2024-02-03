@@ -1,7 +1,7 @@
 ﻿using CoachBoard.Domain.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace CoachBoard.Infrastructure.Extensions;
+namespace CoachBoard.Application.Extensions;
 public static class PaginationExtensions
 {
     public static async Task<PaginatedResult<T>> CreatePaginationAsync<T>(this IQueryable<T> data, int page, int pageSize)
