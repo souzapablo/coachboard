@@ -2,4 +2,6 @@
 using MediatR;
 
 namespace CoachBoard.Application.Features.Users.Queries.List;
-public record ListUsersQuery : IRequest<Result<List<UserResponse>>>;
+public record ListUsersQuery(
+    int Page,
+    int PageSize) : IRequest<PaginatedResult<UserResponse>>;

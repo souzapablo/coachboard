@@ -12,9 +12,9 @@ namespace CoachBoard.Presentation.Controllers;
 public class UsersController(ISender sender) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> List()
+    public async Task<IActionResult> List(int page = 1, int pageSize = 10)
     {
-        var result = await sender.Send(new ListUsersQuery());
+        var result = await sender.Send(new ListUsersQuery(page, pageSize));
 
         return Ok(result);
     }

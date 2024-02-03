@@ -1,22 +1,19 @@
 ﻿using CoachBoard.Domain.Repositories;
 using CoachBoard.Domain.Shared;
+using CoachBoard.Infrastructure.Extensions;
 using MediatR;
 
 namespace CoachBoard.Application.Features.Users.Queries.List;
-public class ListUsersQueryHandler(IUserRepository userRepository) : IRequestHandler<ListUsersQuery, Result<List<UserResponse>>>
+public class ListUsersQueryHandler(IUserRepository userRepository) : IRequestHandler<ListUsersQuery, PaginatedResult<UserResponse>>
 {
-    public async Task<Result<List<UserResponse>>> Handle(ListUsersQuery request, CancellationToken cancellationToken)
+    public async Task<PaginatedResult<UserResponse>> Handle(ListUsersQuery request, CancellationToken cancellationToken)
     {
-        var users = await userRepository.ListAsync(cancellationToken);
+        var users = userRepository.List();
 
-        var userResponseList = users
-            .Select(user => new UserResponse(
-                user.Id,
-                user.Username,
-                user.Email,
-                user.Careers))
-            .ToList();
+        var userResponses = users
+            .Select(user => new UserResponse(user.Id, user.Username, user.Email, user.Careers))
+            .AsQueryable();
 
-        return Result.Success(userResponseList);
+        return await userResponses.CreatePaginationAsync(request.Page, request.PageSize);
     }
 }

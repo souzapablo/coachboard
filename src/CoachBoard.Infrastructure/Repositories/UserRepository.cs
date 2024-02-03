@@ -20,10 +20,9 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
             .ThenInclude(career => career.Teams)
             .SingleOrDefaultAsync(user => user.Id == id, cancellationToken: cancellationToken);
 
-    public async Task<List<User>> ListAsync(CancellationToken cancellationToken = default) =>
-        await context
+    public IQueryable<User> List() =>
+         context
             .Users
             .Include(user => user.Careers)
-            .ThenInclude(career => career.Teams)
-            .ToListAsync(cancellationToken: cancellationToken);
+            .ThenInclude(career => career.Teams);
 }
