@@ -2,6 +2,7 @@
 using CoachBoard.Application.Features.Users.Commands.Delete;
 using CoachBoard.Application.Features.Users.Queries.GetById;
 using CoachBoard.Application.Features.Users.Queries.List;
+using CoachBoard.Presentation.Controllers.Base;
 using CoachBoard.Presentation.InputModels.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -9,15 +10,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoachBoard.Presentation.Controllers;
 
-[ApiController]
 [Route("api/v1/users")]
 [Authorize]
-public class UsersController(ISender sender) : ControllerBase
+public class UsersController(ISender Sender) : ApiController(Sender)
 {
     [HttpGet]
     public async Task<IActionResult> List(int page = 1, int pageSize = 10)
     {
-        var result = await sender.Send(new ListUsersQuery(page, pageSize));
+        var result = await Sender.Send(new ListUsersQuery(page, pageSize));
 
         return Ok(result);
     }
@@ -27,10 +27,10 @@ public class UsersController(ISender sender) : ControllerBase
     {
         var query = new GetUserByIdQuery(id);
 
-        var result = await sender.Send(query);
+        var result = await Sender.Send(query);
 
         if (!result.IsSuccess)
-            return BadRequest(result);
+            return NotFound(result);
 
         return Ok(result);
     }
@@ -41,10 +41,10 @@ public class UsersController(ISender sender) : ControllerBase
     {
         var command = new CreateUserCommand(input.Username, input.Email, input.Password);
 
-        var result = await sender.Send(command);
+        var result = await Sender.Send(command);
 
         if (!result.IsSuccess)
-            return BadRequest(result);
+            return HandleFailure(result);
 
         return CreatedAtAction(nameof(GetById), new { Id = result.Data }, command);  
     }
@@ -54,10 +54,10 @@ public class UsersController(ISender sender) : ControllerBase
     {
         var command = new DeleteUserCommand(id);
 
-        var result = await sender.Send(command);
+        var result = await Sender.Send(command);
 
         if (!result.IsSuccess)
-            return BadRequest(result);
+            return NotFound(result);
 
         return NoContent();
     }
