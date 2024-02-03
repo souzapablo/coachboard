@@ -7,7 +7,7 @@ CoachBoard is an app meant to help me keep track of my Career Mode data so I can
 ### Features (MVP)
 
 - [X] Register Users
-- [ ] Authentication with JWT
+- [X] Authentication with JWT
 - [ ] Create Career with initial team
 - [ ] Suggest formation
 
