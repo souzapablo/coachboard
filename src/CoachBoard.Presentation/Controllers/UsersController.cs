@@ -1,4 +1,5 @@
 ﻿using CoachBoard.Application.Features.Users.Commands.Create;
+using CoachBoard.Application.Features.Users.Commands.Delete;
 using CoachBoard.Application.Features.Users.Queries.GetById;
 using CoachBoard.Application.Features.Users.Queries.List;
 using CoachBoard.Presentation.InputModels.Users;
@@ -43,5 +44,18 @@ public class UsersController(ISender sender) : ControllerBase
             return BadRequest(result);
 
         return CreatedAtAction(nameof(GetById), new { Id = result.Data }, command);  
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var command = new DeleteUserCommand(id);
+
+        var result = await sender.Send(command);
+
+        if (!result.IsSuccess)
+            return BadRequest(result);
+
+        return NoContent();
     }
 }

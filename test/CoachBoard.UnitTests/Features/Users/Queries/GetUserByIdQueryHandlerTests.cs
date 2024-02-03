@@ -1,5 +1,4 @@
 ﻿using CoachBoard.Application.Features.Users.Queries.GetById;
-using NSubstitute.ReturnsExtensions;
 
 namespace CoachBoard.UnitTests.Features.Users.Queries;
 public class GetUserByIdQueryHandlerTests

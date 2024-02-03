@@ -14,6 +14,9 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
     public void Create(User user) =>
         context.Users.Add(user);
 
+    public void Update(User user) =>
+        context.Users.Update(user);
+
     public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
         await context
             .Users
