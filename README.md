@@ -15,3 +15,4 @@ CoachBoard is an app meant to help me keep track of my Career Mode data so I can
 
 - .NET 8.0
 - PostgreSQL
+- JWT Authentication
